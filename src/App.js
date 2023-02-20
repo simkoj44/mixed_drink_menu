@@ -24,7 +24,7 @@ const App = () => {
 
       <div className='body'>
       {
-        // Use state variable to determine which component we render
+        // Use state variable to determine whether we render ItemSelector or BrowseCocktails
         displayHome ? <ItemSelector /> : <BrowseCocktails />
       }
       </div>
