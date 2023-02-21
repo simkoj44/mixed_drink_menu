@@ -256,7 +256,7 @@
 
 .browseContainer {
   border: 2px solid black;
-  padding: 15px;
+  padding: 10px;
   width: 65%;
   margin: auto;
   margin-bottom: 20px;
@@ -266,5 +266,6 @@
   text-align: left;
   margin-left: 15%;
   margin-right: 15%;
-  font-size: 14px;
+  font-size: 12px;
+  line-height: 130%;
 }
