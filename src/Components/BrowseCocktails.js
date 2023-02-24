@@ -60,7 +60,7 @@ const BrowseCocktails = (props) => {
           <button type='button' className='primaryButton' onClick={sortAtoZ}>Sort A-Z</button>
           <div className='space'></div>
           <div className='baseSpiritSelector'>
-            <label for='base spirit'>Sort by Base Spirit:</label>
+            <label htmlFor='base spirit'>Sort by Base Spirit:</label>
             <div className='space'></div>
             <select onChange={filterByCategory} name='base spirit' id='base spirit'>
               <option value='All'>All</option>
@@ -79,6 +79,7 @@ const BrowseCocktails = (props) => {
         </div>
         <div>
           {
+            // Iterate through list of drinks and display corresponding details
             // Element[0] is used because the drink list also contains the alcohol content of each drink (needed to sort list by alcohol)
             fullDrinkList.map(element => {
               return (

@@ -67,8 +67,8 @@ const App = () => {
 
       <div className='body'>
       {
-        // Use state variable to determine whether we render ItemSelector or BrowseCocktails, pass the collection of drinks from the database as props.
-        displayHome ? <ItemSelector ingredientCollection={ingredientCollection}/> : <BrowseCocktails drinkCollection={drinkCollection} drinkObject={drinkObject}/>
+        // Use state variable to determine whether we render ItemSelector or BrowseCocktails, pass info gathered from database as props
+        displayHome ? <ItemSelector ingredientCollection={ingredientCollection} drinkObject={drinkObject}/> : <BrowseCocktails drinkCollection={drinkCollection} drinkObject={drinkObject}/>
       }
       </div>
     </div>

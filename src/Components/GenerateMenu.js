@@ -1,5 +1,4 @@
 import '../App.css';
-import drink_directory from '../DrinkDirectory.js';
 import {useState, useEffect} from 'react';
 import React from 'react';
 
@@ -15,7 +14,7 @@ const GenerateMenu = (props) => {
     const [specialtyDrinks, setSpecialtyDrinks] = useState([]);
     const [combinationDrinks, setCombinationDrinks] = useState([]);
 
-    // When component is rendered, sort drinks by category
+    // When component is rendered, sort drinks by category and update state variables
     useEffect(() => {
 
         // Temporary variables to break out drinks by category (and then update state variables)
@@ -30,7 +29,7 @@ const GenerateMenu = (props) => {
 
         // Iterate through available drinks (received from props) and add to appropriate category. Statements are sorted by drink frequency in database to minimize runtime. 
         for (let i = 0; i < props.userDrinkList.length; i++) {
-            switch (drink_directory[props.userDrinkList[i]]['Base Spirit']) {
+            switch (props.drinkObject[props.userDrinkList[i]]['Base Spirit']) {
                 case 'Gin':
                     ginDrinkList.push(props.userDrinkList[i]);
                     break;
@@ -69,7 +68,7 @@ const GenerateMenu = (props) => {
         setSpecialtyDrinks(specialtyDrinkList);
         setCombinationDrinks(combinationDrinkList);
 
-    }, [props.userDrinkList])
+    }, [props.userDrinkList, props.drinkObject])
     
     return (
         <div style={{ textAlign: 'center', width: '90%', margin: 'auto', border: '1px solid black' }}>
@@ -86,7 +85,7 @@ const GenerateMenu = (props) => {
                                     <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}}>
                                         <hr></hr>
                                         <h2>{drink}</h2>
-                                        <p><strong>Ingredients: </strong>{drink_directory[drink]['Required Ingredients'].join(', ')}</p>
+                                        <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
                                     </div>
                                 )
                             })
@@ -105,7 +104,7 @@ const GenerateMenu = (props) => {
                                     <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}}>
                                         <hr></hr>
                                         <h2>{drink}</h2>
-                                        <p><strong>Ingredients: </strong>{drink_directory[drink]['Required Ingredients'].join(', ')}</p>
+                                        <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
                                     </div>
                                 )
                             })
@@ -124,7 +123,7 @@ const GenerateMenu = (props) => {
                                     <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}}>
                                         <hr></hr>
                                         <h2>{drink}</h2>
-                                        <p><strong>Ingredients: </strong>{drink_directory[drink]['Required Ingredients'].join(', ')}</p>
+                                        <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
                                     </div>
                                 )
                             })
@@ -143,7 +142,7 @@ const GenerateMenu = (props) => {
                                     <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}}>
                                         <hr></hr>
                                         <h2>{drink}</h2>
-                                        <p><strong>Ingredients: </strong>{drink_directory[drink]['Required Ingredients'].join(', ')}</p>
+                                        <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
                                     </div>
                                 )
                             })
@@ -162,7 +161,7 @@ const GenerateMenu = (props) => {
                                     <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}}>
                                         <hr></hr>
                                         <h2>{drink}</h2>
-                                        <p><strong>Ingredients: </strong>{drink_directory[drink]['Required Ingredients'].join(', ')}</p>
+                                        <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
                                     </div>
                                 )
                             })
@@ -181,7 +180,7 @@ const GenerateMenu = (props) => {
                                     <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}}>
                                         <hr></hr>
                                         <h2>{drink}</h2>
-                                        <p><strong>Ingredients: </strong>{drink_directory[drink]['Required Ingredients'].join(', ')}</p>
+                                        <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
                                     </div>
                                 )
                             })
@@ -200,7 +199,7 @@ const GenerateMenu = (props) => {
                                     <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}}>
                                         <hr></hr>
                                         <h2>{drink}</h2>
-                                        <p><strong>Ingredients: </strong>{drink_directory[drink]['Required Ingredients'].join(', ')}</p>
+                                        <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
                                     </div>
                                 )
                             })
@@ -219,7 +218,7 @@ const GenerateMenu = (props) => {
                                     <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}}>
                                         <hr></hr>
                                         <h2>{drink}</h2>
-                                        <p><strong>Ingredients: </strong>{drink_directory[drink]['Required Ingredients'].join(', ')}</p>
+                                        <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
                                     </div>
                                 )
                             })
