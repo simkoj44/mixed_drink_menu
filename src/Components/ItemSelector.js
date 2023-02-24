@@ -34,9 +34,7 @@ class ItemSelector extends React.Component {
           'Cinnamon Syrup': false,
           'Cocktail Shaker': false,
           'Coffee': false,
-          'Coffee Liqueuer': false,
           'Coffee Liqueur': false,
-          'Coke': false,
           'Cola': false,
           'Cranberry Juice': false,
           'Cream': false,
@@ -183,6 +181,32 @@ class ItemSelector extends React.Component {
     }
   
     render() {
+
+      let base = [];
+      let supplementary = [];
+      let additional = [];
+      let tools = [];
+      for (let i = 0; i < this.props.ingredientCollection.length; i++) {
+        switch (this.props.ingredientCollection[i]['Type']) {
+          case 'Base Spirit':
+            base.push(this.props.ingredientCollection[i]['Name']);
+            break;
+          case 'Additional Ingredient':
+            additional.push(this.props.ingredientCollection[i]['Name']);
+            break;
+          case 'Supplementary Alcoholic Drink':
+            supplementary.push(this.props.ingredientCollection[i]['Name']);
+            break;
+          default:
+            tools.push(this.props.ingredientCollection[i]['Name']);
+            break;
+        }
+      }
+
+      console.log(base);
+      console.log(supplementary);
+      console.log(additional);
+      console.log(tools);
   
       return (
         <>

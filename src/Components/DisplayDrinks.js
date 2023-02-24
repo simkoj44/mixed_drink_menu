@@ -3,7 +3,7 @@ import drink_directory from '../DrinkDirectory.js';
 import React, {useEffect, useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import GenerateInstructions from './GenerateInstructions.js';
-import GenerateMenu from './GenerateMenu';
+import GenerateMenu from './GenerateMenu.js';
 
 const DisplayDrinks = (props) => {
   

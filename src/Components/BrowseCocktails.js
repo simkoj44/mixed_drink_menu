@@ -1,27 +1,25 @@
 import '../App.css';
-import drink_directory from '../DrinkDirectory.js';
 import {useState, useEffect} from 'react';
 import React from 'react';
 
-const BrowseCocktails = () => {
+const BrowseCocktails = (props) => {
   
   // State variable to store the full list of drinks from the database
   const [fullDrinkList, setFullDrinkList] = useState([]);
   // State variable copy of the full drink list to preserve original list while sorting the state variable above
   const [fullDrinkListStorage, setFullDrinkListStorage] = useState([]);
-
+  
   // When component is first rendered, pull the full list of drinks from the database
   useEffect(() => {
-      // Conditional to prevent unwanted updates after sorting list
-      if (fullDrinkList.length === 0) {
-          let temp = [];
-          for (let property in drink_directory) {
-            temp.push([[property],[drink_directory[property]['Approximate Amount of Alcohol']]]);
-          }
-          setFullDrinkList(temp);
-          setFullDrinkListStorage(temp);
-      }
-  }, [fullDrinkList])
+    // Temporary variable to store drink names and alcohol content (so we can sort by alcohol)
+    let tempArr = [];
+    for (let i = 0; i < props.drinkCollection.length; i ++) {
+      tempArr.push([[props.drinkCollection[i]['Name']],[props.drinkCollection[i]['Approximate Amount of Alcohol']]]);
+    }
+    tempArr.sort();
+    setFullDrinkList(tempArr);
+    setFullDrinkListStorage(tempArr);
+  }, [props.drinkCollection])
   
   // Sort list alphabetically
   const sortAtoZ = () => {
@@ -33,13 +31,13 @@ const BrowseCocktails = () => {
   
   // Filter list by selected category
   const filterByCategory = (event) => {
-      if (event.target.value === 'all') {
+      if (event.target.value === 'All') {
         setFullDrinkList(fullDrinkListStorage);
       } else {
         let temp = [];
-        for (let i = 0; i < fullDrinkListStorage.length; i++) {
-          if (drink_directory[fullDrinkListStorage[i][0]]['Base Spirit'] === event.target.value) {
-            temp.push(fullDrinkListStorage[i]);
+        for (let i = 0; i < props.drinkCollection.length; i++) {
+          if (props.drinkCollection[i]['Base Spirit'] === event.target.value) {
+            temp.push([[props.drinkCollection[i]['Name']],[props.drinkCollection[i]['Approximate Amount of Alcohol']]]);
           }
         }
         setFullDrinkList(temp);
@@ -87,17 +85,17 @@ const BrowseCocktails = () => {
                 <div className='browseContainer'>
                   <div className='drinkDetails'>
                     <h2>{element[0]}</h2>
-                    <p><strong>Base Spirit: </strong>{drink_directory[element[0]]['Base Spirit']}</p>
-                    <p><strong>Required Ingredients: </strong>{drink_directory[element[0]]['Required Ingredients'].join(', ')}</p>
-                    <p><strong>Optional Ingredients: </strong>{drink_directory[element[0]]['Optional Items'].join(', ')}</p>
-                    <p><strong>Required Tools: </strong>{drink_directory[element[0]]['Required Tools'].join(', ')}</p>
-                    <p><strong>Instructions: </strong>{drink_directory[element[0]]['Instructions']}</p>
-                    <p><strong>Traditional Glass: </strong>{drink_directory[element[0]]['Traditional Glass']}</p>
+                    <p><strong>Base Spirit: </strong>{props.drinkObject[element[0]]['Base Spirit']}</p>
+                    <p><strong>Required Ingredients: </strong>{props.drinkObject[element[0]]['Required Ingredients'].join(', ')}</p>
+                    <p><strong>Optional Ingredients: </strong>{props.drinkObject[element[0]]['Optional Items'].join(', ')}</p>
+                    <p><strong>Required Tools: </strong>{props.drinkObject[element[0]]['Required Tools'].join(', ')}</p>
+                    <p><strong>Instructions: </strong>{props.drinkObject[element[0]]['Instructions']}</p>
+                    <p><strong>Traditional Glass: </strong>{props.drinkObject[element[0]]['Traditional Glass']}</p>
                     <p>
-                      <strong>Approximate Amount of Alcohol: </strong>{drink_directory[element[0]]['Approximate Amount of Alcohol']}
-                      {drink_directory[element[0]]['Approximate Amount of Alcohol'] === 1.0 ? ' Standard Drink' : ' Standard Drinks'}
+                      <strong>Approximate Amount of Alcohol: </strong>{props.drinkObject[element[0]]['Approximate Amount of Alcohol']}
+                      {props.drinkObject[element[0]]['Approximate Amount of Alcohol'] === 1.0 ? ' Standard Drink' : ' Standard Drinks'}
                     </p>
-                    <p><strong>IBA Official Cocktail: </strong>{drink_directory[element[0]]['IBA Official Cocktail']}</p>
+                    <p><strong>IBA Official Cocktail: </strong>{props.drinkObject[element[0]]['IBA Official Cocktail']}</p>
                   </div>
                 </div>
               )
