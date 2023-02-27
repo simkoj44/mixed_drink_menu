@@ -1,0 +1,77 @@
+/* ItemSelector */
+.checkboxGroup {
+    margin-top: 25px;
+    justify-content: space-between;
+    display: flex;
+    font-size: 17px;
+}
+  
+.checkboxColumn {
+    border: 1px solid black;
+    text-align: left;
+    flex-basis: calc(33% - 5px);
+}
+  
+.checkboxLegend {
+    border-bottom: 1px solid black;
+    font-weight: bold;
+    text-align: center;
+    height: 52px;
+    overflow: hidden;
+}
+  
+.checkboxContainer {
+    height: 325px;
+    overflow-y: scroll;
+    margin-left: 20%;
+}
+  
+.toolsAndSubmitGroup {
+    font-size: 16px;
+    margin-top: 15px;
+    text-align: center;
+    margin-left: 33.6%;
+    width: 32.8%;
+    margin-bottom: 15px;
+}
+
+.toolsGroup {
+    border: 1px solid black;
+}
+
+.toolsLegend {
+    font-weight: bold;
+    border-bottom: 1px solid black;
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+
+.toolsCheckboxes {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.space {
+    width: 8px;
+    height: auto;
+    display: inline-block;
+}
+
+.buttonGroup {
+    margin-top: 10px;
+}
+  
+.primaryButton {
+    color: #f2f2f2;
+    background-color: #333;
+    font-size: 16px;
+    border: 1px solid #333;
+    letter-spacing: 0.25px;
+    padding: 5px;
+}
+
+.primaryButton:hover {
+    background-color: #F1F1F1;
+    color: black;
+    border: 1px solid black;
+}

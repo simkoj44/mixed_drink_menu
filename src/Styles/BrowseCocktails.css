@@ -1,0 +1,73 @@
+/* BrowseCocktails */
+.browseCocktails {
+    text-align: center;
+}
+  
+.browseCocktailsHeader {
+    margin-top: 15px;
+    margin-bottom: 0;
+    padding: 0;
+}
+  
+.sortingButtonGroup {
+    margin-bottom: 15px;
+}
+  
+.primaryButton {
+    color: #f2f2f2;
+    background-color: #333;
+    font-size: 16px;
+    border: 1px solid #333;
+    letter-spacing: 0.25px;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.primaryButton:hover {
+    background-color: #F1F1F1;
+    color: black;
+    border: 1px solid black;
+}
+  
+.space {
+    width: 8px;
+    height: auto;
+    display: inline-block;
+}
+
+.baseSpiritSelector {
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: #f2f2f2;
+    text-align: center;
+    background-color: #333;
+    border: 1px solid #333;
+    margin-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    line-height: 28.67px;
+    letter-spacing: 0.25px;
+}
+
+.baseSpiritSelector:hover {
+    background-color: #F1F1F1;
+    color: black;
+    border: 1px solid black;
+}
+  
+.browseContainer {
+    border: 2px solid black;
+    padding: 10px;
+    width: 65%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+  
+.drinkDetails {
+    text-align: left;
+    margin-left: 15%;
+    margin-right: 15%;
+    font-size: 12px;
+    line-height: 130%;
+}

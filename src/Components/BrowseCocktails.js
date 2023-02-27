@@ -1,4 +1,4 @@
-import '../App.css';
+import '../Styles/BrowseCocktails.css';
 import {useState, useEffect} from 'react';
 import React from 'react';
 
@@ -9,17 +9,17 @@ const BrowseCocktails = (props) => {
   // State variable copy of the full drink list to preserve original list while sorting the state variable above
   const [fullDrinkListStorage, setFullDrinkListStorage] = useState([]);
   
-  // When component is first rendered, pull the full list of drinks from the database
+  // When component is first rendered, generate an array of drinks from the database object (receieved as props)
   useEffect(() => {
     // Temporary variable to store drink names and alcohol content (so we can sort by alcohol)
     let tempArr = [];
-    for (let i = 0; i < props.drinkCollection.length; i ++) {
-      tempArr.push([[props.drinkCollection[i]['Name']],[props.drinkCollection[i]['Approximate Amount of Alcohol']]]);
+    for (let property in props.drinkObject) {
+      tempArr.push([[property], [props.drinkObject[property]['Approximate Amount of Alcohol']]]);
     }
     tempArr.sort();
     setFullDrinkList(tempArr);
     setFullDrinkListStorage(tempArr);
-  }, [props.drinkCollection])
+  }, [props.drinkObject])
   
   // Sort list alphabetically
   const sortAtoZ = () => {
@@ -35,11 +35,12 @@ const BrowseCocktails = (props) => {
         setFullDrinkList(fullDrinkListStorage);
       } else {
         let temp = [];
-        for (let i = 0; i < props.drinkCollection.length; i++) {
-          if (props.drinkCollection[i]['Base Spirit'] === event.target.value) {
-            temp.push([[props.drinkCollection[i]['Name']],[props.drinkCollection[i]['Approximate Amount of Alcohol']]]);
+        for (let property in props.drinkObject) {
+          if (props.drinkObject[property]['Base Spirit'] === event.target.value) {
+            temp.push([[property], [props.drinkObject[property]['Approximate Amount of Alcohol']]]);
           }
         }
+        temp.sort();
         setFullDrinkList(temp);
       }
   }

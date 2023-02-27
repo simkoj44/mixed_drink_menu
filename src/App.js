@@ -1,4 +1,4 @@
-import './App.css';
+import './Styles/App.css';
 import {useState, useEffect} from 'react';
 import React from 'react';
 import ItemSelector from './Components/ItemSelector.js';
@@ -56,19 +56,18 @@ const App = () => {
     <div className='fullApplication'>
       <div>
         <h1 className='title'>Mixed Drink Menu</h1>
+        <p className='subtitle'>A Desktop Application</p>
         <div className='navBar'>
           <button type='button' onClick={() => setDisplay(true)} className='navBarButton'>Home</button>
           <div className='space'></div>
           <button type='button' onClick={() => setDisplay(false)} className='navBarButton'>Browse Cocktails</button>
-          <div className='space'></div>
-          <button type='button' className='navBarButton'>Placeholder Button</button>
         </div>
       </div>
 
       <div className='body'>
       {
         // Use state variable to determine whether we render ItemSelector or BrowseCocktails, pass info gathered from database as props
-        displayHome ? <ItemSelector ingredientCollection={ingredientCollection} drinkObject={drinkObject}/> : <BrowseCocktails drinkCollection={drinkCollection} drinkObject={drinkObject}/>
+        displayHome ? <ItemSelector ingredientCollection={ingredientCollection} drinkObject={drinkObject}/> : <BrowseCocktails drinkObject={drinkObject}/>
       }
       </div>
     </div>

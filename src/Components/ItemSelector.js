@@ -1,4 +1,4 @@
-import '../App.css';
+import '../Styles/ItemSelector.css';
 import React from 'react';
 import DisplayDrinks from './DisplayDrinks.js';
 import {useState, useEffect} from 'react';
@@ -21,7 +21,6 @@ const ItemSelector = (props) => {
   // 1) Separates ingredients/tools into respective arrays and updates state variables
   // 2) Initializes an object that holds all ingredients/tools and a boolean property to indicate whether that item's checkbox is checked
   useEffect(() => {
-
     let base = [];
     let supplementary = [];
     let additional = [];
@@ -163,27 +162,31 @@ const ItemSelector = (props) => {
             </div>
           </div>
           <div className='toolsAndSubmitGroup'>
-            <legend>Please select the tools you have available:</legend>
-            {
-              tools.map(element => {
-                return (
-                  <>
-                    <input type='checkbox' id={element} name='tools' value={element} className='checkbox' onChange={handleCheckboxChange}/><label htmlFor={element} className='toolsLabel'>{element}</label>
-                  </>
-                )
-              })
-            }
-            <br></br>
-            <button type='button' className='primaryButton' onClick={seeDrinkOptions}>See Cocktails</button>
-            <div className='space'></div>
-            <button type='button' className='primaryButton' onClick={resetDrinkOptions}>Reset</button>
-            <br></br>
-            {
-              // Activate DisplayDrinks component and pass the available items as props
-              display ? <DisplayDrinks drinkObject={props.drinkObject} availableItems={availableItems} /> : <></>
-            }
-            <p></p>
+            <div className='toolsGroup'>
+              <legend className='toolsLegend'>Please select the tools you have available:</legend>
+              <div className='toolsCheckboxes'>
+                {
+                  tools.map(element => {
+                    return (
+                      <>
+                        <input type='checkbox' id={element} name='tools' value={element} className='checkbox' onChange={handleCheckboxChange}/><label htmlFor={element}>{element}</label>
+                        <div className='space'></div>
+                      </>
+                    )
+                  })
+                }
+              </div>
+            </div>
+            <div className='buttonGroup'>
+              <button type='button' className='primaryButton' onClick={seeDrinkOptions}>See Cocktails</button>
+              <div className='space'></div>
+              <button type='button' className='primaryButton' onClick={resetDrinkOptions}>Reset</button>
+            </div>
           </div>
+          {
+            // Activate DisplayDrinks component and pass the available items as props
+            display ? <DisplayDrinks drinkObject={props.drinkObject} availableItems={availableItems} /> : <></>
+          }
         </>
   );
 }
