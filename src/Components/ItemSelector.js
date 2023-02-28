@@ -2,6 +2,7 @@ import '../Styles/ItemSelector.css';
 import React from 'react';
 import DisplayDrinks from './DisplayDrinks.js';
 import {useState, useEffect} from 'react';
+import RecommendedItems from './RecommendedItems.js';
 
 const ItemSelector = (props) => {
 
@@ -16,6 +17,7 @@ const ItemSelector = (props) => {
   const [availableItems, setAvailableItems] = useState({});
   // State variable to determine whether we need to display the DisplayDrinks component
   const [display, setDisplay] = useState(false);
+  const [defaultDisplay, setDefaultDisplay] = useState(true);
 
   // This function is called when the component receives new props and it serves two purposes
   // 1) Separates ingredients/tools into respective arrays and updates state variables
@@ -90,6 +92,7 @@ const ItemSelector = (props) => {
 
     setAvailableItems(temp);
     setDisplay(true);
+    setDefaultDisplay(true);
   }
 
   // Function called when 'Reset' is clicked. It unchecks all checkboxes, updates the itemList so all items are set to false, and deactivates the DisplayDrinks component
@@ -102,6 +105,7 @@ const ItemSelector = (props) => {
 
     setItemList(tempItemList);
     setDisplay(false);
+    setDefaultDisplay(true);
     let x = document.getElementsByClassName('checkbox');
     for (let i = 0; i < x.length; i++) {
       x[i].checked = false;
@@ -109,7 +113,7 @@ const ItemSelector = (props) => {
   }
 
   return (
-        <>
+        <div>
           <div className='checkboxGroup'>
             <div className='checkboxColumn'>
               <div className='checkboxLegend'>
@@ -177,17 +181,29 @@ const ItemSelector = (props) => {
                 }
               </div>
             </div>
-            <div className='buttonGroup'>
+            <div className='itemButtonGroup'>
               <button type='button' className='primaryButton' onClick={seeDrinkOptions}>See Cocktails</button>
               <div className='space'></div>
               <button type='button' className='primaryButton' onClick={resetDrinkOptions}>Reset</button>
             </div>
           </div>
           {
-            // Activate DisplayDrinks component and pass the available items as props
-            display ? <DisplayDrinks drinkObject={props.drinkObject} availableItems={availableItems} /> : <></>
+            // Activates either DisplayDrinks or RecommendedItems component and passes the drinkObject and availableItems as props
+            display ? (
+            <>
+            <hr></hr>
+            <div className='displayButtonGroup'>
+              <button type='button' className='primaryButton' onClick={() => setDefaultDisplay(true)}>View Available Drinks</button>
+              <div className='space'></div>
+              <button type='button' className='primaryButton' onClick={() => setDefaultDisplay(false)}>View Recommended Ingredients</button>
+            </div>
+            {
+              defaultDisplay ? <DisplayDrinks drinkObject={props.drinkObject} availableItems={availableItems} /> : <RecommendedItems drinkObject={props.drinkObject} availableItems={availableItems} />
+            }
+            </>
+            ) : <></>
           }
-        </>
+        </div>
   );
 }
 

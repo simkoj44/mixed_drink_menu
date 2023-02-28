@@ -88,7 +88,6 @@ const DisplayDrinks = (props) => {
 
   return (
     <div>
-      <hr></hr>
       <div className='drinkGroup' id='drinkList'>
         <div className='drinkColumn'>
           <h4 className='drinkListIntro'>{userDrinkList.length === 0.0 ? 'You cannot make any cocktails.' : userDrinkList.length === 1.0 ? 'You can make 1 cocktail:' : 'You can make ' + userDrinkList.length + ' cocktails:'}</h4>
@@ -103,23 +102,25 @@ const DisplayDrinks = (props) => {
               )
             })
           }
+        </div>
+        <div className='space'></div>
+        <div className='detailsColumn' id='detailsBox'>
+          <h4>Drink details will be displayed here upon selection.</h4>
+        </div>
+      </div>
+      {
+        // If the user is able to make at least 1 drink, display the establishment name input box along with buttons to generate the menu or instructions
+        userDrinkList.length > 0 ? (
+          <div className='buttonContainer'>
+            <label className='establishmentNameLabel' htmlFor='establishment'>Enter Establisment Name: </label>
+            <input type='text' placeholder='Establishment Name' className='establishmentNameInput' id='establishment' onChange={updateEstablishment}></input>
+            <br></br>
+            <button type='button' className='primaryButton' onClick={generateMenu}>Generate Printable Menu</button>
+            <div className='space'></div>
+            <button type='button' className='primaryButton' onClick={generateInstructions}>Generate Printable Instructions</button>
           </div>
-            <div className='detailsColumn' id='detailsBox'>
-              <h4>Drink details will be displayed here upon selection.</h4>
-            </div>
-          </div>
-          {
-            // If the user is able to make at least 1 drink, display the establishment name input box along with buttons to generate the menu or instructions
-            userDrinkList.length > 0 ? (
-              <div className='buttonContainer'>
-                <input type='text' placeholder='Enter Establishment Name' className='establishmentNameInput' id='establishment' onChange={updateEstablishment}></input>
-                <div className='space'></div>
-                <button type='button' className='primaryButton' onClick={generateMenu}>Generate Printable Menu</button>
-                <div className='space'></div>
-                <button type='button' className='primaryButton' onClick={generateInstructions}>Generate Printable Instructions</button>
-              </div>
-            ) : <></>
-          }
+        ) : <></>
+      }
     </div>
   );
 }
