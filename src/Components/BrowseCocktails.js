@@ -37,7 +37,7 @@ const BrowseCocktails = (props) => {
         let temp = [];
         for (let property in props.drinkObject) {
           if (props.drinkObject[property]['Base Spirit'] === event.target.value) {
-            temp.push([[property], [props.drinkObject[property]['Approximate Amount of Alcohol']]]);
+            temp.push([property, props.drinkObject[property]['Approximate Amount of Alcohol']]);
           }
         }
         temp.sort();

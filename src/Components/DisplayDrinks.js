@@ -91,7 +91,7 @@ const DisplayDrinks = (props) => {
       <div className='drinkGroup' id='drinkList'>
         <div className='drinkColumn'>
           <h4 className='drinkListIntro'>{userDrinkList.length === 0.0 ? 'You cannot make any cocktails.' : userDrinkList.length === 1.0 ? 'You can make 1 cocktail:' : 'You can make ' + userDrinkList.length + ' cocktails:'}</h4>
-          <p>{userDrinkList.length === 0 ? 'Add some ingredients to get started.' : 'Select an option to see details.'}</p>
+          <p>{userDrinkList.length === 0 ? 'Check out our recommended items to expand your menu.' : 'Select an option to see details.'}</p>
           {
             // Render a button for each drink the user is able to make
             userDrinkList.map(drink => {

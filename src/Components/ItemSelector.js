@@ -195,7 +195,7 @@ const ItemSelector = (props) => {
             <div className='displayButtonGroup'>
               <button type='button' className='primaryButton' onClick={() => setDefaultDisplay(true)}>View Available Drinks</button>
               <div className='space'></div>
-              <button type='button' className='primaryButton' onClick={() => setDefaultDisplay(false)}>View Recommended Ingredients</button>
+              <button type='button' className='primaryButton' onClick={() => setDefaultDisplay(false)}>View Recommended Items</button>
             </div>
             {
               defaultDisplay ? <DisplayDrinks drinkObject={props.drinkObject} availableItems={availableItems} /> : <RecommendedItems drinkObject={props.drinkObject} availableItems={availableItems} />

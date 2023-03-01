@@ -32,3 +32,23 @@
     margin-bottom: 0;
     padding: 0;
 }
+
+.itemButtonContainer {
+    padding: 2px;
+}
+  
+.itemButton {
+    width: 75%;
+    margin: auto;
+    font-size: 16px;
+    padding: 2px;
+    transition-delay: 0.4s;
+}
+
+.itemName {
+    text-align: center;
+}
+
+.itemContainer {
+    text-align: left;
+}
