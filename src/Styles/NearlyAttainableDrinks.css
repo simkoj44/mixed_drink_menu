@@ -1,0 +1,95 @@
+/* DisplayDrinks */
+.drinkGroup {
+    display: flex;
+    margin-top: 12px;
+}
+  
+.drinkColumn {
+    height: 500px;  
+    flex-basis: calc(50%);
+    overflow-y: auto;
+    border:1px solid black;
+    text-align: center;
+    margin-bottom: 10px;
+}
+  
+.drinkListIntro {
+    margin-bottom: 0;
+    padding: 0;
+}
+  
+.drinkContainer {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: left;
+}
+  
+.drinkName {
+    text-align: center;
+}
+  
+.drinkButtonContainer {
+    padding: 2px;
+}
+  
+.drinkButton {
+    width: 69%;
+    margin: auto;
+    font-size: 16px;
+    padding: 2px;
+    transition-delay: 0.4s;
+}
+  
+.detailsColumn {
+    height: 500px;
+    flex-basis: calc(50%);
+    border:1px solid black;
+    text-align: center;
+    margin-bottom: 10px;
+    overflow-y: auto;
+}
+  
+.buttonContainer {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.establishmentNameLabel {
+    font-weight: bold;
+}
+  
+.establishmentNameInput {
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 26.67px;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    letter-spacing: 0.25px;
+}
+  
+.space {
+    width: 8px;
+    height: auto;
+    display: inline-block;
+}
+  
+.primaryButton {
+    color: #f2f2f2;
+    background-color: #333;
+    font-size: 16px;
+    border: 1px solid #333;
+    letter-spacing: 0.25px;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.primaryButton:hover {
+    background-color: #F1F1F1;
+    color: black;
+    border: 1px solid black;
+}

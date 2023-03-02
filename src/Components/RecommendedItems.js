@@ -42,7 +42,7 @@ const RecommendedItems = (props) => {
                     }
                 }
                 else if (missingItems.length === 2) {
-                    for (let i = 0; i < 2; i++) {
+                    for (let i = 0; i < missingItems.length; i++) {
                         if (tempRecommendedItems[missingItems[i]]) {
                             tempRecommendedItems[missingItems[i]]['Count'] += 1
                             tempRecommendedItems[missingItems[i]]['Drinks Two Away'].push(property);
@@ -56,7 +56,51 @@ const RecommendedItems = (props) => {
                         }
                     }
                 }
+                else {
+                    for (let i = 0; i < missingItems.length; i++) {
+                        if (!tempRecommendedItems[missingItems[i]]) {
+                            tempRecommendedItems[missingItems[i]] = {
+                                'Count': 0,
+                                'Drinks One Away': [],
+                                'Drinks Two Away': []
+                            };
+                        }
+                    }
+                }
             }
+        }
+
+        if (tempRecommendedItems['Rum']) {
+            tempRecommendedItems['Dark Rum']['Count'] += (tempRecommendedItems['Rum']['Count']);
+            tempRecommendedItems['Dark Rum']['Drinks One Away'].push(...tempRecommendedItems['Rum']['Drinks One Away']);
+            tempRecommendedItems['Dark Rum']['Drinks Two Away'].push(...tempRecommendedItems['Rum']['Drinks Two Away']);
+        
+            tempRecommendedItems['White Rum']['Count'] += (tempRecommendedItems['Rum']['Count']);
+            tempRecommendedItems['White Rum']['Drinks One Away'].push(...tempRecommendedItems['Rum']['Drinks One Away']);
+            tempRecommendedItems['White Rum']['Drinks Two Away'].push(...tempRecommendedItems['Rum']['Drinks Two Away']);
+        
+            tempRecommendedItems['Gold Rum']['Count'] += (tempRecommendedItems['Rum']['Count']);
+            tempRecommendedItems['Gold Rum']['Drinks One Away'].push(...tempRecommendedItems['Rum']['Drinks One Away']);
+            tempRecommendedItems['Gold Rum']['Drinks Two Away'].push(...tempRecommendedItems['Rum']['Drinks Two Away']);
+
+            tempRecommendedItems['Spiced Rum'] = {
+                'Count': tempRecommendedItems['Rum']['Count'],
+                'Drinks One Away': tempRecommendedItems['Rum']['Drinks One Away'],
+                'Drinks Two Away': tempRecommendedItems['Rum']['Drinks Two Away']
+            }
+
+            tempRecommendedItems['Rum']['Count'] = 0;
+        }
+        if (tempRecommendedItems['Milk/Cream']) {
+            tempRecommendedItems['Milk']['Count'] += (tempRecommendedItems['Milk/Cream']['Count']);
+            tempRecommendedItems['Milk']['Drinks One Away'].push(...tempRecommendedItems['Milk/Cream']['Drinks One Away']);
+            tempRecommendedItems['Milk']['Drinks Two Away'].push(...tempRecommendedItems['Milk/Cream']['Drinks Two Away']);
+        
+            tempRecommendedItems['Cream']['Count'] += (tempRecommendedItems['Milk/Cream']['Count']);
+            tempRecommendedItems['Cream']['Drinks One Away'].push(...tempRecommendedItems['Milk/Cream']['Drinks One Away']);
+            tempRecommendedItems['Cream']['Drinks Two Away'].push(...tempRecommendedItems['Milk/Cream']['Drinks Two Away']);
+
+            tempRecommendedItems['Milk/Cream']['Count'] = 0;
         }
 
         setRecommendedItems(tempRecommendedItems);
@@ -79,7 +123,6 @@ const RecommendedItems = (props) => {
         let reducedArr = tempArr.slice(0, 10);
         setSortedRecommendedItems(reducedArr);
 
-        console.log(reducedArr);
         console.log(recommendedItems);
 
     }, [recommendedItems])
@@ -102,8 +145,17 @@ const RecommendedItems = (props) => {
             }
         }
 
+        // Formatting update for certain items to improve grammar of output
+        let formattedName = missingItem;
+        if (missingItem === 'Strainer' || missingItem === 'Blender' || missingItem === 'Cocktail Shaker' || missingItem === 'Lemon' || missingItem === 'Lime' || missingItem === 'Sugar Cube') {
+            formattedName = 'a ' + missingItem;
+        }
+        else if (missingItem === 'Orange' || missingItem === 'Egg White' || missingItem === 'Egg Yolk') {
+            formattedName = 'an ' + missingItem;
+        }
+
         return (
-            <><i>You are also missing {missingItem}</i></>
+            <><i>You are also missing {formattedName}</i></>
         )
     }
 
@@ -188,16 +240,22 @@ const RecommendedItems = (props) => {
             <div className='recommendationsGroup' id='recommendationsList'>
                 <div className='itemsColumn'>
                     <div className='recommendationsContainer'>
-                        <h4>Here are the top recommended items to enhance your mixed drink menu: </h4>
-                        <p>Select an item to see the cocktails it will help you make.</p>
                         {
-                            sortedRecommendedItems.map((item, index) => {
-                                return (
-                                    <div className='itemButtonContainer'>
-                                        <button className='itemButton' onClick={displayItemDetails} type='button' value={item[0]} id={item[0]}>{index + 1}. {item[0]}</button>
-                                    </div>
-                                )
-                            })
+                            sortedRecommendedItems.length === 0 ? (<h4>You already have all the items in our database. Way to go!</h4>) : (
+                                <div>
+                                    <h4>Here are the top recommended items to enhance your mixed drink menu: </h4>
+                                    <p>Select an item to see the cocktails it will help you make.</p>
+                                    {
+                                        sortedRecommendedItems.map((item, index) => {
+                                            return (
+                                                <div className='itemButtonContainer'>
+                                                    <button className='itemButton' onClick={displayItemDetails} type='button' value={item[0]} id={item[0]}>{index + 1}. {item[0]}</button>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            )
                         }
                     </div>
                 </div>
@@ -205,24 +263,6 @@ const RecommendedItems = (props) => {
                 <div className='drinkColumn'>
                     <div className='recommendationsContainer' id='itemBox'>
                         <h4>Item details will be displayed here upon selection.</h4>
-                        {/* <h4 className='drinkListIntro'>{drinksOneAway.length === 0 ? <></> : 'You are 1 item away from making the following cocktails: '}</h4>
-                        {
-                            drinksOneAway.map(drink => {
-                                return (
-                                    <p>{drink}</p>
-                                )
-                            })
-                        }
-                        <h4 className='drinkListIntro'>{drinksOneAway.length < 10 ? 'You are 2 items away from making the following cocktails: ' : <></>}</h4>
-                        {
-                            drinksOneAway.length < 10 ? (
-                                drinksTwoAway.map(drink => {
-                                    return (
-                                        <p>{drink}</p>
-                                    )
-                                })
-                            ) : <></>
-                        } */}
                     </div>
                 </div>
             </div>

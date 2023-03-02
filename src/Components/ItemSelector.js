@@ -3,6 +3,7 @@ import React from 'react';
 import DisplayDrinks from './DisplayDrinks.js';
 import {useState, useEffect} from 'react';
 import RecommendedItems from './RecommendedItems.js';
+import NearlyAttainableDrinks from './NearlyAttainableDrinks.js';
 
 const ItemSelector = (props) => {
 
@@ -15,10 +16,13 @@ const ItemSelector = (props) => {
   const [itemList, setItemList] = useState({});
   // State variable to hold the list of available items (which is passed as props to DisplayDrinks)
   const [availableItems, setAvailableItems] = useState({});
-  // State variable to determine whether we need to display the DisplayDrinks component
-  const [display, setDisplay] = useState(false);
-  const [defaultDisplay, setDefaultDisplay] = useState(true);
-
+  // State variable to determine whether we need to display the toggle buttons
+  const [displayButtons, setDisplayButtons] = useState(false);
+  // State variables to determine which subcomponent is rendered
+  const [showDisplayDrinks, setShowDisplayDrinks] = useState(false);
+  const [showRecommendedItems, setShowRecommendedItems] = useState(false);
+  const [showNearlyAttainableDrinks, setShowNearlyAttainableDrinks] = useState(false);
+  
   // This function is called when the component receives new props and it serves two purposes
   // 1) Separates ingredients/tools into respective arrays and updates state variables
   // 2) Initializes an object that holds all ingredients/tools and a boolean property to indicate whether that item's checkbox is checked
@@ -91,11 +95,13 @@ const ItemSelector = (props) => {
     temp['None'] = '';
 
     setAvailableItems(temp);
-    setDisplay(true);
-    setDefaultDisplay(true);
+    setDisplayButtons(true);
+    setShowDisplayDrinks(true);
+    setShowRecommendedItems(false);
+    setShowNearlyAttainableDrinks(false);
   }
 
-  // Function called when 'Reset' is clicked. It unchecks all checkboxes, updates the itemList so all items are set to false, and deactivates the DisplayDrinks component
+  // Function called when 'Reset' is clicked. It unchecks all checkboxes, updates the itemList so all items are set to false, and deactivates all subcomponents
   const resetDrinkOptions = () => {
     let tempItemList = {};
 
@@ -104,12 +110,32 @@ const ItemSelector = (props) => {
     }
 
     setItemList(tempItemList);
-    setDisplay(false);
-    setDefaultDisplay(true);
+    setDisplayButtons(false);
+    setShowDisplayDrinks(false);
+    setShowRecommendedItems(false);
+    setShowNearlyAttainableDrinks(false);
     let x = document.getElementsByClassName('checkbox');
     for (let i = 0; i < x.length; i++) {
       x[i].checked = false;
     }
+  }
+
+  const viewDisplayDrinks = () => {
+    setShowDisplayDrinks(true);
+    setShowRecommendedItems(false);
+    setShowNearlyAttainableDrinks(false);
+  }
+
+  const viewRecommendedItems = () => {
+    setShowDisplayDrinks(false);
+    setShowRecommendedItems(true);
+    setShowNearlyAttainableDrinks(false);
+  }
+
+  const viewNearlyAttainableDrinks = () => {
+    setShowDisplayDrinks(false);
+    setShowRecommendedItems(false);
+    setShowNearlyAttainableDrinks(true);
   }
 
   return (
@@ -189,16 +215,24 @@ const ItemSelector = (props) => {
           </div>
           {
             // Activates either DisplayDrinks or RecommendedItems component and passes the drinkObject and availableItems as props
-            display ? (
+            displayButtons ? (
             <>
             <hr></hr>
             <div className='displayButtonGroup'>
-              <button type='button' className='primaryButton' onClick={() => setDefaultDisplay(true)}>View Available Drinks</button>
+              <button type='button' className='primaryButton' onClick={viewDisplayDrinks}>View Available Drinks</button>
               <div className='space'></div>
-              <button type='button' className='primaryButton' onClick={() => setDefaultDisplay(false)}>View Recommended Items</button>
+              <button type='button' className='primaryButton' onClick={viewRecommendedItems}>View Recommended Items</button>
+              <div className='space'></div>
+              <button type='button' className='primaryButton' onClick={viewNearlyAttainableDrinks}>View Nearly Attainable Drinks</button>
             </div>
             {
-              defaultDisplay ? <DisplayDrinks drinkObject={props.drinkObject} availableItems={availableItems} /> : <RecommendedItems drinkObject={props.drinkObject} availableItems={availableItems} />
+              showDisplayDrinks ? <DisplayDrinks drinkObject={props.drinkObject} availableItems={availableItems} /> :  <></>
+            }
+            {
+              showRecommendedItems ? <RecommendedItems drinkObject={props.drinkObject} availableItems={availableItems} /> : <></>
+            }
+            {
+              showNearlyAttainableDrinks ? <NearlyAttainableDrinks drinkObject={props.drinkObject} availableItems={availableItems} /> : <></>
             }
             </>
             ) : <></>
