@@ -1,20 +1,27 @@
 import './Styles/App.css';
 import {useState, useEffect} from 'react';
 import React from 'react';
+import * as Realm from 'realm-web';
 import ItemSelector from './Components/ItemSelector.js';
 import BrowseCocktails from './Components/BrowseCocktails.js';
-import * as Realm from 'realm-web';
 
+// Primary application function called when webpage is loaded
 const App = () => {
-
-  // State variable to determine if we display the homepage or cocktail list
+  // State variable to determine if we display ItemSelector component (homepage) or BrowseCocktail component
   const [displayHome, setDisplay] = useState(true);
   // State variables to store info from the database
   const [drinkCollection, setDrinkCollection] = useState([]);
   const [ingredientCollection, setIngredientCollection] = useState([]);
   const [drinkObject, setDrinkObject] = useState({});
 
-  // Function call to the DrinkDirectory database to obtain full list of cocktails
+
+  // Upon rendering, call function to get data from the database
+  useEffect(() => {
+    getData()
+  }, []);
+
+
+  // Function call to the DrinkDirectory database to obtain full list of cocktails and ingredients/tools
   const getData = async () => {
     const app = new Realm.App({ id: "mixed_drink_menu-ikzpu" });
     const credentials = Realm.Credentials.anonymous();
@@ -29,10 +36,6 @@ const App = () => {
     }
   }
 
-  // Upon rendering, call function to get data from the database
-  useEffect(() => {
-    getData()
-  }, []);
 
   // After data has been obtained, initialize a Javascript object for faster access within application
   useEffect(() => {
@@ -66,7 +69,7 @@ const App = () => {
 
       <div className='body'>
       {
-        // Use state variable to determine whether we render ItemSelector or BrowseCocktails, pass info gathered from database as props
+        // Use state variable to determine whether we render ItemSelector or BrowseCocktails, and pass info gathered from database as props
         displayHome ? <ItemSelector ingredientCollection={ingredientCollection} drinkObject={drinkObject}/> : <BrowseCocktails drinkObject={drinkObject}/>
       }
       </div>

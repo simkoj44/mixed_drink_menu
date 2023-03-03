@@ -1,8 +1,8 @@
 import {useState, useEffect} from 'react';
 import React from 'react';
 
+// This component renders a printable menu of all the user's available cocktails
 const GenerateMenu = (props) => {
-
     // State variables to store available cocktails by category
     const [brandyDrinks, setBrandyDrinks] = useState([]);
     const [ginDrinks, setGinDrinks] = useState([]);
@@ -13,10 +13,10 @@ const GenerateMenu = (props) => {
     const [specialtyDrinks, setSpecialtyDrinks] = useState([]);
     const [combinationDrinks, setCombinationDrinks] = useState([]);
 
+
     // When component is rendered, sort drinks by category and update state variables
     useEffect(() => {
-
-        // Temporary variables to break out drinks by category (and then update state variables)
+        // Temporary variables to break out drinks by category (used to update state variables)
         let brandyDrinkList = [];
         let ginDrinkList = [];
         let rumDrinkList = [];
@@ -66,9 +66,10 @@ const GenerateMenu = (props) => {
         setWhiskeyDrinks(whiskeyDrinkList);
         setSpecialtyDrinks(specialtyDrinkList);
         setCombinationDrinks(combinationDrinkList);
-
     }, [props.userDrinkList, props.drinkObject])
     
+    
+    // Inline styles are used because page opens in a new window without access to CSS files from the rest of the application
     return (
         <div style={{ textAlign: 'center', width: '90%', margin: 'auto', border: '1px solid black' }}>
             <h1 style={{ paddingTop: '30px', marginBottom: '30px', fontFamily: 'sans-serif' }}>{props.name} Cocktail Menu</h1>

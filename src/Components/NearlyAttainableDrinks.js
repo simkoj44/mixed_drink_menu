@@ -1,38 +1,73 @@
 import '../Styles/NearlyAttainableDrinks.css';
 import React from 'react';
-import {useState, useEffect} from 'react';
+import {useEffect} from 'react';
 import {createRoot} from 'react-dom/client';
 
+// This component displays a list of nearly available drinks, which are drinks where the user is only missing 1-2 items
 const NearlyAttainableDrinks = (props) => {
+    // State variable to store the name of the user's establishment (if specified)
+    useEffect(() => {
+        document.getElementById('drinkList').scrollIntoView({behavior: 'smooth'});
+    }, [])
 
-    // Add scroll on button click
 
+    // Create an HTML element containing the selected drink's details and include a list of all missing items
+    const displayDrinkDetails = (event) => {
+        let drinkName = event.target.value;
+        const drinkDetails = (
+            <div className='drinkContainer'>
+                <h3 className='drinkName'>{drinkName}</h3>
+                <p className='missingItems'><i>You are missing: {props.missingItemsByDrink[drinkName].join(', ')}</i></p>
+                <p><strong>Base Spirit: </strong>{props.drinkObject[drinkName]['Base Spirit']}</p>
+                <p><strong>Required Ingredients: </strong>{props.drinkObject[drinkName]['Required Ingredients'].join(', ')}</p>
+                <p><strong>Optional Ingredients: </strong>{props.drinkObject[drinkName]['Optional Items'].join(', ')}</p>
+                <p><strong>Required Tools: </strong>{props.drinkObject[drinkName]['Required Tools'].join(', ')}</p>
+                <p><strong>Instructions: </strong>{props.drinkObject[drinkName]['Instructions']}</p>
+                <p>
+                <strong>Approximate Amount of Alcohol: </strong>{props.drinkObject[drinkName]['Approximate Amount of Alcohol']}
+                    {props.drinkObject[drinkName]['Approximate Amount of Alcohol'] === 1.0 ? ' Standard Drink' : ' Standard Drinks'}
+                </p>
+                <p><strong>IBA Official Cocktail: </strong>{props.drinkObject[drinkName]['IBA Official Cocktail']}</p>
+            </div>
+        );
+
+        // Create a root to display drink details upon selection
+        const detailsRoot = createRoot(document.getElementById('detailsBox'));
+        detailsRoot.render(drinkDetails);
+    }
+
+    
     return (
         <div>
             <div className='drinkGroup' id='drinkList'>
                 <div className='drinkColumn'>
-                    <h4 className='drinkListIntro'>Sina is Wobbuffet</h4>
-                    <p>Cricks my Jaris</p>
-                </div>
-                {/* <h4 className='drinkListIntro'>{drinksOneAway.length === 0 ? <></> : 'You are 1 item away from making the following cocktails: '}</h4>
-                        {
-                            drinksOneAway.map(drink => {
+                    <h4 className='drinkListIntro'>{props.drinksOneAway.length === 0 ? <></> : 'You are 1 item away from making the following cocktails: '}</h4>
+                    {/* Iterate through the list of drinks where the user is missing only 1 item and render a button for each drink */}
+                    {
+                        props.drinksOneAway.map(drink => {
+                            return (
+                                <div className='drinkButtonContainer'>
+                                    <button className='drinkButton' onClick={displayDrinkDetails} type='button' value={drink} id={drink}>{drink}</button>
+                                </div>
+                            )
+                        })
+                    }
+                    <h4 className='drinkListIntro'>{props.drinksOneAway.length < 10 ? 'You are 2 items away from making the following cocktails: ' : <></>}</h4>
+                    {/* If the user has fewer than 10 drinks in the category above, also iterate through all drinks where the user is missing only 2 items and render a button for each drink */}
+                    {
+                        props.drinksOneAway.length < 10 ? (
+                            props.drinksTwoAway.map(drink => {
                                 return (
-                                    <p>{drink}</p>
+                                    <div className='drinkButtonContainer'>
+                                        <button className='drinkButton' onClick={displayDrinkDetails} type='button' value={drink} id={drink}>{drink}</button>
+                                    </div>
                                 )
                             })
-                        }
-                        <h4 className='drinkListIntro'>{drinksOneAway.length < 10 ? 'You are 2 items away from making the following cocktails: ' : <></>}</h4>
-                        {
-                            drinksOneAway.length < 10 ? (
-                                drinksTwoAway.map(drink => {
-                                    return (
-                                        <p>{drink}</p>
-                                    )
-                                })
-                            ) : <></>
-                        } */}
+                        ) : <></>
+                    }
+                </div>
                 <div className='space'></div>
+                {/* The following div element is the location where drinkDetails will be displayed upon selection */}
                 <div className='detailsColumn' id='detailsBox'>
                     <h4>Drink details will be displayed here upon selection.</h4>
                 </div>
