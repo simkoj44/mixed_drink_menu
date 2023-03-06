@@ -1,6 +1,6 @@
 import '../Styles/ItemSelector.css';
 import React from 'react';
-import {useState, useEffect} from 'react';
+import {useState, useLayoutEffect} from 'react';
 import DisplayDrinks from './DisplayDrinks.js';
 import RecommendedItems from './RecommendedItems.js';
 import NearlyAttainableDrinks from './NearlyAttainableDrinks.js';
@@ -38,7 +38,7 @@ const ItemSelector = (props) => {
   // This function is called when the component receives new props and it serves two purposes
   // 1) Separates ingredients/tools into respective arrays and updates state variables
   // 2) Initializes an object that holds all ingredients/tools and a boolean property to indicate whether that item's checkbox is checked
-  useEffect(() => {
+  useLayoutEffect(() => {
     let base = [];
     let supplementary = [];
     let additional = [];
@@ -74,7 +74,6 @@ const ItemSelector = (props) => {
     setSupplementaryAlcohol(supplementary);
     setAdditionalIngredients(additional);
     setTools(tools);
-
   }, [props.ingredientCollection])
 
 
@@ -302,9 +301,9 @@ const ItemSelector = (props) => {
                 {
                   baseSpirits.map(element => {
                     return (
-                      <>
+                      <div key={element}>
                         <input type='checkbox' id={element} name='ingredients' value={element} className='checkbox' onChange={handleCheckboxChange}/><label htmlFor={element}>{element}</label><br></br>
-                      </>
+                      </div>
                     )
                   })
                 }
@@ -319,9 +318,9 @@ const ItemSelector = (props) => {
                 {
                   supplementaryAlcohol.map(element => {
                     return (
-                      <>
+                      <div key={element}>
                         <input type='checkbox' id={element} name='ingredients' value={element} className='checkbox' onChange={handleCheckboxChange}/><label htmlFor={element}>{element}</label><br></br>
-                      </>
+                      </div>
                     )
                   })
                 }
@@ -336,9 +335,9 @@ const ItemSelector = (props) => {
                 {
                   additionalIngredients.map(element => {
                     return (
-                      <>
+                      <div key={element}>
                         <input type='checkbox' id={element} name='ingredients' value={element} className='checkbox' onChange={handleCheckboxChange}/><label htmlFor={element}>{element}</label><br></br>
-                      </>
+                      </div>
                     )
                   })
                 }
@@ -353,10 +352,10 @@ const ItemSelector = (props) => {
                 {
                   tools.map(element => {
                     return (
-                      <>
+                      <span key={element}>
                         <input type='checkbox' id={element} name='tools' value={element} className='checkbox' onChange={handleCheckboxChange}/><label htmlFor={element}>{element}</label>
                         <div className='space'></div>
-                      </>
+                      </span>
                     )
                   })
                 }

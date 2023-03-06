@@ -1,5 +1,5 @@
 import '../Styles/BrowseCocktails.css';
-import {useState, useEffect} from 'react';
+import {useState, useLayoutEffect} from 'react';
 import React from 'react';
 
 // This component displays a list of all cocktails from the database and allows the user to sort alphabetically, by category, or by alcohol content
@@ -11,7 +11,7 @@ const BrowseCocktails = (props) => {
 
 
   // When component is first rendered and receives props, generate an array of drinks from the database object (receieved as props)
-  useEffect(() => {
+  useLayoutEffect(() => {
     // Temporary variable to store drink names and alcohol content (so we can sort by alcohol)
     let tempArr = [];
     for (let property in props.drinkObject) {
@@ -97,7 +97,7 @@ const BrowseCocktails = (props) => {
             // Element[0] is used because fullDrinkList is a 2D array also contains the alcohol content of each drink (needed to sort list by alcohol)
             fullDrinkList.map(element => {
               return (
-                <div className='browseContainer'>
+                <div className='browseContainer' key={element[0]}>
                   <div className='drinkDetails'>
                     <h2>{element[0]}</h2>
                     <p><strong>Base Spirit: </strong>{props.drinkObject[element[0]]['Base Spirit']}</p>

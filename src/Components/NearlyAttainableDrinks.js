@@ -1,13 +1,19 @@
 import '../Styles/NearlyAttainableDrinks.css';
 import React from 'react';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {createRoot} from 'react-dom/client';
 
 // This component displays a list of nearly available drinks, which are drinks where the user is only missing 1-2 items
 const NearlyAttainableDrinks = (props) => {
-    // State variable to store the name of the user's establishment (if specified)
+    // State variable to store a html root that we will use to render data
+    const [detailsRoot, setDetailsRoot] = useState();
+
+
+    // Upon rendering, scroll page to component and create root for to use for rendering
     useEffect(() => {
         document.getElementById('drinkList').scrollIntoView({behavior: 'smooth'});
+        const tempRoot = createRoot(document.getElementById('detailsBox'));
+        setDetailsRoot(tempRoot);
     }, [])
 
 
@@ -31,8 +37,7 @@ const NearlyAttainableDrinks = (props) => {
             </div>
         );
 
-        // Create a root to display drink details upon selection
-        const detailsRoot = createRoot(document.getElementById('detailsBox'));
+        // Display the details of the selected drink to the detailsRoot
         detailsRoot.render(drinkDetails);
     }
 
@@ -46,7 +51,7 @@ const NearlyAttainableDrinks = (props) => {
                     {
                         props.drinksOneAway.map(drink => {
                             return (
-                                <div className='drinkButtonContainer'>
+                                <div className='drinkButtonContainer' key={drink}>
                                     <button className='drinkButton' onClick={displayDrinkDetails} type='button' value={drink} id={drink}>{drink}</button>
                                 </div>
                             )
@@ -58,7 +63,7 @@ const NearlyAttainableDrinks = (props) => {
                         props.drinksOneAway.length < 10 ? (
                             props.drinksTwoAway.map(drink => {
                                 return (
-                                    <div className='drinkButtonContainer'>
+                                    <div className='drinkButtonContainer' key={drink}>
                                         <button className='drinkButton' onClick={displayDrinkDetails} type='button' value={drink} id={drink}>{drink}</button>
                                     </div>
                                 )

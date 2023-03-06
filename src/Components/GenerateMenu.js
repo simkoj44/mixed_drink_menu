@@ -71,162 +71,167 @@ const GenerateMenu = (props) => {
     
     // Inline styles are used because page opens in a new window without access to CSS files from the rest of the application
     return (
-        <div style={{ textAlign: 'center', width: '90%', margin: 'auto', border: '1px solid black' }}>
-            <h1 style={{ paddingTop: '30px', marginBottom: '30px', fontFamily: 'sans-serif' }}>{props.name} Cocktail Menu</h1>
-            <hr></hr>
-            {/* Following code will render drink menu broken out by category. If a category does not have any available drinks, it is skipped. */}
-            {
-                brandyDrinks.length <= 0 ? <></> : (
-                    <div>
-                        <h2 style={{fontFamily: 'sans-serif'}}>Brandy Cocktails</h2>
-                        {
-                            brandyDrinks.map((drink) => {
-                                return (
-                                    <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}}>
-                                        <hr></hr>
-                                        <h2>{drink}</h2>
-                                        <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
-                )
-            }
-            {
-                ginDrinks.length <= 0 ? <></> : (
-                    <div>
-                        <hr></hr>
-                        <h2 style={{fontFamily: 'sans-serif'}}>Gin Cocktails</h2>
-                        {
-                            ginDrinks.map((drink) => {
-                                return (
-                                    <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}}>
-                                        <hr></hr>
-                                        <h2>{drink}</h2>
-                                        <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
-                )
-            }
-            {
-                rumDrinks.length <= 0 ? <></> : (
-                    <div>
-                        <hr></hr>
-                        <h2 style={{fontFamily: 'sans-serif'}}>Rum Cocktails</h2>
-                        {
-                            rumDrinks.map((drink) => {
-                                return (
-                                    <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}}>
-                                        <hr></hr>
-                                        <h2>{drink}</h2>
-                                        <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
-                )
-            }
-            {
-                tequilaDrinks.length <= 0 ? <></> : (
-                    <div>
-                        <hr></hr>
-                        <h2 style={{fontFamily: 'sans-serif'}}>Tequila Cocktails</h2>
-                        {
-                            tequilaDrinks.map((drink) => {
-                                return (
-                                    <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}}>
-                                        <hr></hr>
-                                        <h2>{drink}</h2>
-                                        <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
-                )
-            }
-            {
-                vodkaDrinks.length <= 0 ? <></> : (
-                    <div>
-                        <hr></hr>
-                        <h2 style={{fontFamily: 'sans-serif'}}>Vodka Cocktails</h2>
-                        {
-                            vodkaDrinks.map((drink) => {
-                                return (
-                                    <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}}>
-                                        <hr></hr>
-                                        <h2>{drink}</h2>
-                                        <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
-                )
-            }
-            {
-                whiskeyDrinks.length <= 0 ? <></> : (
-                    <div>
-                        <hr></hr>
-                        <h2 style={{fontFamily: 'sans-serif'}}>Whiskey Cocktails</h2>
-                        {
-                            whiskeyDrinks.map((drink) => {
-                                return (
-                                    <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}}>
-                                        <hr></hr>
-                                        <h2>{drink}</h2>
-                                        <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
-                )
-            }
-            {
-                specialtyDrinks.length <= 0 ? <></> : (
-                    <div>
-                        <hr></hr>
-                        <h2 style={{fontFamily: 'sans-serif'}}>Specialty Cocktails</h2>
-                        {
-                            specialtyDrinks.map((drink) => {
-                                return (
-                                    <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}}>
-                                        <hr></hr>
-                                        <h2>{drink}</h2>
-                                        <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
-                )
-            }
-            {
-                combinationDrinks.length <= 0 ? <></> : (
-                    <div>
-                        <hr></hr>
-                        <h2 style={{fontFamily: 'sans-serif'}}>Multiple-Base Cocktails</h2>
-                        {
-                            combinationDrinks.map((drink) => {
-                                return (
-                                    <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}}>
-                                        <hr></hr>
-                                        <h2>{drink}</h2>
-                                        <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
-                )
-            }
-        </div>
+        <html>
+            <head></head>
+            <body>
+                <div style={{ textAlign: 'center', width: '90%', margin: 'auto', border: '1px solid black' }}>
+                    <h1 style={{ paddingTop: '30px', marginBottom: '30px', fontFamily: 'sans-serif' }}>{props.name} Cocktail Menu</h1>
+                    <hr></hr>
+                    {/* Following code will render drink menu broken out by category. If a category does not have any available drinks, it is skipped. */}
+                    {
+                        brandyDrinks.length <= 0 ? <></> : (
+                            <div>
+                                <h2 style={{fontFamily: 'sans-serif'}}>Brandy Cocktails</h2>
+                                {
+                                    brandyDrinks.map((drink) => {
+                                        return (
+                                            <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}} key={drink}>
+                                                <hr></hr>
+                                                <h2>{drink}</h2>
+                                                <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        )
+                    }
+                    {
+                        ginDrinks.length <= 0 ? <></> : (
+                            <div>
+                                <hr></hr>
+                                <h2 style={{fontFamily: 'sans-serif'}}>Gin Cocktails</h2>
+                                {
+                                    ginDrinks.map((drink) => {
+                                        return (
+                                            <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}} key={drink}>
+                                                <hr></hr>
+                                                <h2>{drink}</h2>
+                                                <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        )
+                    }
+                    {
+                        rumDrinks.length <= 0 ? <></> : (
+                            <div>
+                                <hr></hr>
+                                <h2 style={{fontFamily: 'sans-serif'}}>Rum Cocktails</h2>
+                                {
+                                    rumDrinks.map((drink) => {
+                                        return (
+                                            <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}} key={drink}>
+                                                <hr></hr>
+                                                <h2>{drink}</h2>
+                                                <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        )
+                    }
+                    {
+                        tequilaDrinks.length <= 0 ? <></> : (
+                            <div>
+                                <hr></hr>
+                                <h2 style={{fontFamily: 'sans-serif'}}>Tequila Cocktails</h2>
+                                {
+                                    tequilaDrinks.map((drink) => {
+                                        return (
+                                            <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}} key={drink}>
+                                                <hr></hr>
+                                                <h2>{drink}</h2>
+                                                <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        )
+                    }
+                    {
+                        vodkaDrinks.length <= 0 ? <></> : (
+                            <div>
+                                <hr></hr>
+                                <h2 style={{fontFamily: 'sans-serif'}}>Vodka Cocktails</h2>
+                                {
+                                    vodkaDrinks.map((drink) => {
+                                        return (
+                                            <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}} key={drink}>
+                                                <hr></hr>
+                                                <h2>{drink}</h2>
+                                                <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        )
+                    }
+                    {
+                        whiskeyDrinks.length <= 0 ? <></> : (
+                            <div>
+                                <hr></hr>
+                                <h2 style={{fontFamily: 'sans-serif'}}>Whiskey Cocktails</h2>
+                                {
+                                    whiskeyDrinks.map((drink) => {
+                                        return (
+                                            <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}} key={drink}>
+                                                <hr></hr>
+                                                <h2>{drink}</h2>
+                                                <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        )
+                    }
+                    {
+                        specialtyDrinks.length <= 0 ? <></> : (
+                            <div>
+                                <hr></hr>
+                                <h2 style={{fontFamily: 'sans-serif'}}>Specialty Cocktails</h2>
+                                {
+                                    specialtyDrinks.map((drink) => {
+                                        return (
+                                            <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}} key={drink}>
+                                                <hr></hr>
+                                                <h2>{drink}</h2>
+                                                <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        )
+                    }
+                    {
+                        combinationDrinks.length <= 0 ? <></> : (
+                            <div>
+                                <hr></hr>
+                                <h2 style={{fontFamily: 'sans-serif'}}>Multiple-Base Cocktails</h2>
+                                {
+                                    combinationDrinks.map((drink) => {
+                                        return (
+                                            <div style={{ padding: '5px', width: '80%', breakInside: 'avoid', textAlign: 'left', marginLeft: '10%', fontFamily: 'sans-serif', fontSize: '12px'}} key={drink}>
+                                                <hr></hr>
+                                                <h2>{drink}</h2>
+                                                <p><strong>Ingredients: </strong>{props.drinkObject[drink]['Required Ingredients'].join(', ')}</p>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        )
+                    }
+                </div>
+            </body>
+        </html>
     );
 }
 

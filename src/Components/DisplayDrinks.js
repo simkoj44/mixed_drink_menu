@@ -9,11 +9,15 @@ import GenerateMenu from './GenerateMenu.js';
 const DisplayDrinks = (props) => {
   // State variable to store the name of the user's establishment (if specified)
   const [establishmentName, setEstablishmentName] = useState('');
+  // State variable to store a html root that we will use to render data
+  const [detailsRoot, setDetailsRoot] = useState();
   
 
-  // Upon rendering, scroll page to component
+  // Upon rendering, scroll page to component and create root for to use for rendering
   useEffect(() => {
     document.getElementById('drinkList').scrollIntoView({behavior: 'smooth'});
+    const tempRoot = createRoot(document.getElementById('detailsBox'));
+    setDetailsRoot(tempRoot);
   }, [])
 
 
@@ -36,8 +40,7 @@ const DisplayDrinks = (props) => {
       </div>
     );
     
-    // Create a root to display drink details upon selection
-    const detailsRoot = createRoot(document.getElementById('detailsBox'));
+    // Display the details of the selected drink to the detailsRoot
     detailsRoot.render(drinkDetails);
   }
 
@@ -75,7 +78,7 @@ const DisplayDrinks = (props) => {
             // Render a button for each drink the user is able to make
             props.userDrinkList.map(drink => {
               return (
-                <div className='drinkButtonContainer'>
+                <div className='drinkButtonContainer' key={drink}>
                   <button className='drinkButton' onClick={displayDrinkDetails} type='button' value={drink} id={drink}>{drink}</button>
                 </div>
               )

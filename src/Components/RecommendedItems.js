@@ -8,11 +8,14 @@ import {createRoot} from 'react-dom/client';
 const RecommendedItems = (props) => {
     // State variable to store sorted list of recommended items (based on frequency in nearly available drinks)
     const [sortedRecommendedItems, setSortedRecommendedItems] = useState([]);
+    // State variable to store a html root that we will use to render data
+    const [detailsRoot, setDetailsRoot] = useState();
 
-
-    // Upon rendering, scroll page to component
+    // Upon rendering, scroll page to component and create root for to use for rendering
     useEffect(() => {
         document.getElementById('recommendationsList').scrollIntoView({behavior: 'smooth'});
+        const tempRoot = createRoot(document.getElementById('itemBox'));
+        setDetailsRoot(tempRoot);
     }, [])
 
 
@@ -63,15 +66,13 @@ const RecommendedItems = (props) => {
                                 {
                                     props.recommendedItems[itemName]['Drinks One Away'].map(drink => {
                                         return (
-                                            <>
-                                            <p><strong>{drink}:</strong> {props.drinkObject[drink]['Required Ingredients'].join(', ')}
+                                            <p key={drink}><strong>{drink}:</strong> {props.drinkObject[drink]['Required Ingredients'].join(', ')}
                                             {
                                                 props.drinkObject[drink]['Required Tools'][0] !== 'None' ? (
                                                     ', ' + props.drinkObject[drink]['Required Tools'].join(', ')
                                                 ) : <></>
                                             }   
                                             </p>
-                                            </>
                                         )
                                     })
                                 }
@@ -88,8 +89,7 @@ const RecommendedItems = (props) => {
                                 {
                                     props.recommendedItems[itemName]['Drinks Two Away'].map(drink => {
                                         return (
-                                            <>
-                                            <p><strong>{drink}:</strong> {props.drinkObject[drink]['Required Ingredients'].join(', ')}
+                                            <p key={drink}><strong>{drink}:</strong> {props.drinkObject[drink]['Required Ingredients'].join(', ')}
                                             {
                                                 props.drinkObject[drink]['Required Tools'][0] !== 'None' ? (
                                                     ', ' + props.drinkObject[drink]['Required Tools'].join(', ')
@@ -98,7 +98,6 @@ const RecommendedItems = (props) => {
                                                 findOtherMissing(drink, itemName)
                                             }
                                             </p>
-                                            </>
                                         )
                                     })
                                 }
@@ -109,8 +108,7 @@ const RecommendedItems = (props) => {
             </div>
         )
 
-        // Create a root to display drink details upon selection
-        const detailsRoot = createRoot(document.getElementById('itemBox'));
+        // Display the details of the selected drink to the detailsRoot
         detailsRoot.render(itemDetails);
     }
 
@@ -145,7 +143,7 @@ const RecommendedItems = (props) => {
         else if (missingItem === 'Orange' || missingItem === 'Egg White' || missingItem === 'Egg Yolk') {
             formattedName = 'an ' + missingItem;
         }
-
+        
         // Return HTML element with formattedName
         return (
             <><i>You are also missing {formattedName}</i></>
@@ -168,7 +166,7 @@ const RecommendedItems = (props) => {
                                     {
                                         sortedRecommendedItems.map((item, index) => {
                                             return (
-                                                <div className='itemButtonContainer'>
+                                                <div className='itemButtonContainer' key={item}>
                                                     <button className='itemButton' onClick={displayItemDetails} type='button' value={item[0]} id={item[0]}>{index + 1}. {item[0]}</button>
                                                 </div>
                                             )
