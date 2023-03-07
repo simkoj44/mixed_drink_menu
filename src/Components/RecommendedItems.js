@@ -11,6 +11,7 @@ const RecommendedItems = (props) => {
     // State variable to store a html root that we will use to render data
     const [detailsRoot, setDetailsRoot] = useState();
 
+    
     // Upon rendering, scroll page to component and create root for to use for rendering
     useEffect(() => {
         document.getElementById('recommendationsList').scrollIntoView({behavior: 'smooth'});

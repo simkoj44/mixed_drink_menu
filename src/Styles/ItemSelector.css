@@ -1,6 +1,6 @@
 /* ItemSelector */
+
 .checkboxGroup {
-    margin-top: 25px;
     justify-content: space-between;
     display: flex;
     font-size: 17px;
@@ -21,7 +21,7 @@
 }
   
 .checkboxContainer {
-    height: 325px;
+    height: 330px;
     overflow-y: scroll;
     margin-left: 20%;
 }
@@ -79,4 +79,26 @@
 .displayButtonGroup {
     text-align: center;
     margin-bottom: 12px;
+}
+
+.buttonContainer {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.establishmentNameLabel {
+    font-weight: bold;
+}
+  
+.establishmentNameInput {
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 26.67px;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    letter-spacing: 0.25px;
 }

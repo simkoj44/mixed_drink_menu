@@ -1,15 +1,18 @@
 import '../Styles/ItemSelector.css';
 import React from 'react';
 import {useState, useLayoutEffect} from 'react';
+import {createRoot} from 'react-dom/client';
 import DisplayDrinks from './DisplayDrinks.js';
 import RecommendedItems from './RecommendedItems.js';
 import NearlyAttainableDrinks from './NearlyAttainableDrinks.js';
+import GenerateMenu from './GenerateMenu.js';
+import GenerateInstructions from './GenerateInstructions.js';
 
 // This function is the main driver of the application - it displays a 4 groups of checkboxes of all required cocktail items from the database
 // Users can select all the items they have available and hit 'See Cocktails' to view a list of available drinks, recommended items, and nearly attainable drinks
+// From there, users can generate a printable menu of all their available drinks or a printable list of instructions on how to make each drink
 // Much of the logic for the program is executed in this component and resulting data is passed to child components as props
 const ItemSelector = (props) => {
-
   // State variables to store ingredients/tools based on category
   const [baseSpirits, setBaseSpirits] = useState([]);
   const [supplementaryAlcohol, setSupplementaryAlcohol] = useState([]);
@@ -34,6 +37,9 @@ const ItemSelector = (props) => {
   const [showRecommendedItems, setShowRecommendedItems] = useState(false);
   const [showNearlyAttainableDrinks, setShowNearlyAttainableDrinks] = useState(false);
   
+  // State variable to store the name of the user's establishment (if specified)
+  const [establishmentName, setEstablishmentName] = useState('');
+
 
   // This function is called when the component receives new props and it serves two purposes
   // 1) Separates ingredients/tools into respective arrays and updates state variables
@@ -289,8 +295,33 @@ const ItemSelector = (props) => {
     setShowNearlyAttainableDrinks(true);
   }
 
+
+  // As user types in establishment name, update state
+  const updateEstablishment = () => {
+    let establishment = document.getElementById('establishment').value;
+    setEstablishmentName(establishment);
+  }
+
+
+  // Open new window with GenerateInstructions component, passing the establishment name and user's drink list as props
+  const generateInstructions = () => {
+    const instructionsWindow = window.open();
+    const instructionsRoot = createRoot(instructionsWindow.document);
+    instructionsRoot.render(<GenerateInstructions name={establishmentName} userDrinkList={userDrinkList} drinkObject={props.drinkObject}/>);
+  }
+
+
+  // Open new window with GenerateMenu component, passing the establishment name and user's drink list as props
+  const generateMenu = () => {
+    const menuWindow = window.open();
+    const menuRoot = createRoot(menuWindow.document);
+    menuRoot.render(<GenerateMenu name={establishmentName} userDrinkList={userDrinkList} drinkObject={props.drinkObject}/>);
+  }
+
+
   return (
         <div>
+          <p><strong>Select your available items to view a list of cocktails you are able to make, along with recommended items and nearly attainable drinks.</strong></p>
           <div className='checkboxGroup'>
             <div className='checkboxColumn'>
               <div className='checkboxLegend'>
@@ -388,6 +419,19 @@ const ItemSelector = (props) => {
             }
             {
               showNearlyAttainableDrinks ? <NearlyAttainableDrinks drinkObject={props.drinkObject} drinksOneAway={drinksOneAway} drinksTwoAway={drinksTwoAway} missingItemsByDrink={missingItemsByDrink} /> : <></>
+            }
+            {
+              // If the user is able to make at least 1 drink, display the establishment name input box along with buttons to generate the menu or instructions
+              userDrinkList.length > 0 ? (
+                <div className='buttonContainer'>
+                  <label className='establishmentNameLabel' htmlFor='establishment'>Enter Establisment Name: </label>
+                  <input type='text' placeholder='Establishment Name' className='establishmentNameInput' id='establishment' onChange={updateEstablishment}></input>
+                  <br></br>
+                  <button type='button' className='primaryButton' onClick={generateMenu}>Generate Printable Menu</button>
+                  <div className='space'></div>
+                  <button type='button' className='primaryButton' onClick={generateInstructions}>Generate Printable Instructions</button>
+                </div>
+              ) : <></>
             }
             </>
             ) : <></>

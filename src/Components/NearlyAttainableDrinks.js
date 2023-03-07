@@ -57,7 +57,8 @@ const NearlyAttainableDrinks = (props) => {
                             )
                         })
                     }
-                    <h4 className='drinkListIntro'>{props.drinksOneAway.length < 10 ? 'You are 2 items away from making the following cocktails: ' : <></>}</h4>
+                    <h4 className='drinkListIntro'>{(props.drinksOneAway.length < 10 && props.drinksTwoAway.length > 0) ? 'You are 2 items away from making the following cocktails: ' : <></>}</h4>
+                    <h4 className='drinkListIntro'>{(props.drinksOneAway.length === 0 && props.drinksTwoAway.length === 0) ? 'You are not within 2 items of making any additional drinks.' : <></>}</h4>
                     {/* If the user has fewer than 10 drinks in the category above, also iterate through all drinks where the user is missing only 2 items and render a button for each drink */}
                     {
                         props.drinksOneAway.length < 10 ? (

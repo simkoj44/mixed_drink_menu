@@ -1,14 +1,10 @@
 import '../Styles/DisplayDrinks.css';
 import React, {useEffect, useState} from 'react';
 import {createRoot} from 'react-dom/client';
-import GenerateInstructions from './GenerateInstructions.js';
-import GenerateMenu from './GenerateMenu.js';
 
 // This component displays the full list of drinks that the user can make, based on the items they have available
 // Users can select from their list of drinks to see specific details on each cocktail
 const DisplayDrinks = (props) => {
-  // State variable to store the name of the user's establishment (if specified)
-  const [establishmentName, setEstablishmentName] = useState('');
   // State variable to store a html root that we will use to render data
   const [detailsRoot, setDetailsRoot] = useState();
   
@@ -45,29 +41,6 @@ const DisplayDrinks = (props) => {
   }
 
 
-  // As user types in establishment name, update state
-  const updateEstablishment = () => {
-    let establishment = document.getElementById('establishment').value;
-    setEstablishmentName(establishment);
-  }
-
-
-  // Open new window with GenerateInstructions component, passing the establishment name and user's drink list as props
-  const generateInstructions = () => {
-    const instructionsWindow = window.open();
-    const instructionsRoot = createRoot(instructionsWindow.document);
-    instructionsRoot.render(<GenerateInstructions name={establishmentName} userDrinkList={props.userDrinkList} drinkObject={props.drinkObject}/>);
-  }
-
-
-  // Open new window with GenerateMenu component, passing the establishment name and user's drink list as props
-  const generateMenu = () => {
-    const menuWindow = window.open();
-    const menuRoot = createRoot(menuWindow.document);
-    menuRoot.render(<GenerateMenu name={establishmentName} userDrinkList={props.userDrinkList} drinkObject={props.drinkObject}/>);
-  }
-
-
   return (
     <div>
       <div className='drinkGroup' id='drinkList'>
@@ -91,19 +64,6 @@ const DisplayDrinks = (props) => {
           <h4>Drink details will be displayed here upon selection.</h4>
         </div>
       </div>
-      {
-        // If the user is able to make at least 1 drink, display the establishment name input box along with buttons to generate the menu or instructions
-        props.userDrinkList.length > 0 ? (
-          <div className='buttonContainer'>
-            <label className='establishmentNameLabel' htmlFor='establishment'>Enter Establisment Name: </label>
-            <input type='text' placeholder='Establishment Name' className='establishmentNameInput' id='establishment' onChange={updateEstablishment}></input>
-            <br></br>
-            <button type='button' className='primaryButton' onClick={generateMenu}>Generate Printable Menu</button>
-            <div className='space'></div>
-            <button type='button' className='primaryButton' onClick={generateInstructions}>Generate Printable Instructions</button>
-          </div>
-        ) : <></>
-      }
     </div>
   );
 }
