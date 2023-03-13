@@ -59,3 +59,27 @@
 .body > * {
   grid-column: 2;
 }
+
+.loadingLabel {
+  text-align: center;
+  margin-top: 180px;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.loader {
+  margin: auto;
+  margin-top: -158px;
+  margin-bottom: 80px;
+  border: 20px solid #EAF0F6;
+  border-radius: 50%;
+  border-top: 20px solid #333;
+  width: 200px;
+  height: 200px;
+  animation: spinner 4s linear infinite;
+}
+
+@keyframes spinner {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

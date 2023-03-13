@@ -7,6 +7,8 @@ import BrowseCocktails from './Components/BrowseCocktails.js';
 
 // Primary application function called when webpage is loaded
 const App = () => {
+  // State variable to determine if we have finished fetching and processing data from the server
+  const [isFetching, setIsFetching] = useState(true);
   // State variable to determine if we display ItemSelector component (homepage) or BrowseCocktail component
   const [displayHome, setDisplay] = useState(true);
   // State variables to store info from the database
@@ -53,7 +55,13 @@ const App = () => {
       }
     }
     setDrinkObject(tempObj);
+
+    // If we are done loading and processing data from the server, update isFetching
+    if (drinkCollection.length > 0) {
+      setIsFetching(false);
+    }
   }, [drinkCollection]);
+
 
   return (
     <div className='fullApplication'>
@@ -69,8 +77,8 @@ const App = () => {
 
       <div className='body'>
       {
-        // Use state variable to determine whether we render ItemSelector or BrowseCocktails, and pass info gathered from database as props
-        displayHome ? <ItemSelector ingredientCollection={ingredientCollection} drinkObject={drinkObject}/> : <BrowseCocktails drinkObject={drinkObject}/>
+        // Render loading component if we are still fetching data, otherwise check the displayHome variable to see if we render ItemSelector or BrowseCocktails
+        isFetching ? <div><h2 className='loadingLabel'>Loading Data</h2><div className='loader'></div></div> : displayHome ? <ItemSelector ingredientCollection={ingredientCollection} drinkObject={drinkObject}/> : <BrowseCocktails drinkObject={drinkObject}/>
       }
       </div>
     </div>
