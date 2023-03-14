@@ -1,4 +1,4 @@
-import '../Styles/ItemSelector.css';
+import '../Styles-Home/ItemSelector.css';
 import React from 'react';
 import {useState, useLayoutEffect} from 'react';
 import {createRoot} from 'react-dom/client';

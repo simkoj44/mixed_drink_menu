@@ -1,4 +1,4 @@
-import '../Styles/BrowseCocktails.css';
+import '../Styles-Browse/BrowseCocktails.css';
 import {useState, useLayoutEffect} from 'react';
 import React from 'react';
 

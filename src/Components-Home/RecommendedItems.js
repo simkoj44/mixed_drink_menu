@@ -1,4 +1,4 @@
-import '../Styles/RecommendedItems.css';
+import '../Styles-Home/RecommendedItems.css';
 import React from 'react';
 import {useState, useEffect} from 'react';
 import {createRoot} from 'react-dom/client';

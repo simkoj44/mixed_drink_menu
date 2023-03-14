@@ -1,4 +1,4 @@
-import '../Styles/NearlyAttainableDrinks.css';
+import '../Styles-Home/NearlyAttainableDrinks.css';
 import React from 'react';
 import {useEffect, useState} from 'react';
 import {createRoot} from 'react-dom/client';
