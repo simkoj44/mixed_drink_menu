@@ -1,9 +1,11 @@
 import React from 'react';
 
+// Subcomponent of ItemSelector
 // This component renders a printable list of instructions for all the user's available cocktails
+
 const GenerateInstructions = (props) => {
   // Iterate through the list of the user's available drinks (received as props) and display that drink's details and instructions
-  // Inline styles are used because page opens in a new window without access to CSS files from the rest of the application
+  // Inline styles used because page opens in a new window without access to CSS files from the rest of the application
   return (
     <html>
       <head></head>

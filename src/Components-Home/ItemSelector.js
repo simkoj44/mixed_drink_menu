@@ -8,53 +8,55 @@ import NearlyAttainableDrinks from './NearlyAttainableDrinks.js';
 import GenerateMenu from './GenerateMenu.js';
 import GenerateInstructions from './GenerateInstructions.js';
 
+// // Subcomponent of App
 // This function is the main driver of the application - it displays a 4 groups of checkboxes of all required cocktail items from the database
-// Users can select all the items they have available and hit 'See Cocktails' to view a list of available drinks, recommended items, and nearly attainable drinks
-// From there, users can generate a printable menu of all their available drinks or a printable list of instructions on how to make each drink
-// Much of the logic for the program is executed in this component and resulting data is passed to child components as props
+// Users can select all the items they have available and hit 'See Cocktails' to view a list of available drinks (DisplayDrinks component), recommended items (RecommendedItems component), and nearly attainable drinks (NearlyAttainableDrinks component)
+// From there, users can generate a printable menu of all their available drinks (GenerateMenu component) or a printable list of instructions on how to make each drink (GenerateInstructions component)
+// Much of the logic for the application is executed in this component and resulting data is passed to child components as props - this way the program does not need to repeat calculations as users toggle between subcomponents
+
+// ItemSelector has the following functions:
+// 1) useLayoutEffect - Called when component is rendered => seperates ingredients/tools into respective arrays and initializes itemList object that holds all ingredients/tools along with a boolean property to indicate whether the item's corresponding checkbox is checked
+// 2) handleCheckboxChange - Called whenever a checkbox is checked/unchecked and it updates that item's boolean property in the itemList state variable
+// 3) generateDrinkOptions - Called when user clicks 'See Cocktails' => checks with items the user has selected and generates data to be passed to child components
+// 4) resetDrinkOptions - Called when user clicks 'Reset' => updates the itemList so all items are set to false, unchecks all checkboxes, and deactivates all subcomponents
+// 5-7) viewDisplayDrinks, viewRecommendedItems, viewNearlyAttainableDrinks - Called when the user clicks the respective button => displays the chosen subcomponent
+// 8) updateEstablishment - As user types in establishment name, update state
+// 9) generateInstructions - Called when user clicks 'Generate Instructions' => opens a new window with the GenerateInstructions component, passing the establishment name and user's drink list as props
+// 10) generateMenu - Called when user clicks 'Generate Menu' => opens a new window with the GenerateMenu component, passing the establishment name and user's drink list as props
+
 const ItemSelector = (props) => {
-  // State variables to store ingredients/tools based on category
+  // Variables to store ingredients/tools based on category
   const [baseSpirits, setBaseSpirits] = useState([]);
   const [supplementaryAlcohol, setSupplementaryAlcohol] = useState([]);
   const [additionalIngredients, setAdditionalIngredients] = useState([]);
   const [tools, setTools] = useState([]);
-
-  // State variable to hold full list of items and whether the corresponding checkbox has been checked
+  // Variable to hold full list of items and whether the item's corresponding checkbox has been checked
   const [itemList, setItemList] = useState({});
-
-  // State variables updated on form submission that are passed as props to child components
+  // Variables updated on form submission that are passed as props to child components
   const [userDrinkList, setuserDrinkList] = useState([]);
   const [drinksOneAway, setDrinksOneAway] = useState([]);
   const [drinksTwoAway, setDrinksTwoAway] = useState([]);
   const [missingItemsByDrink, setMissingItemsByDrink] = useState({});
   const [recommendedItems, setRecommendedItems] = useState({});
-
-  // State variable to determine whether we need to display the toggle buttons
+  // Variable to determine whether we need to display the toggle buttons
   const [displayButtons, setDisplayButtons] = useState(false);
-
-  // State variables to determine which subcomponent is rendered (if any)
+  // Variables to determine which subcomponent is rendered (if any)
   const [showDisplayDrinks, setShowDisplayDrinks] = useState(false);
   const [showRecommendedItems, setShowRecommendedItems] = useState(false);
   const [showNearlyAttainableDrinks, setShowNearlyAttainableDrinks] = useState(false);
-  
-  // State variable to store the name of the user's establishment (if specified)
+  // Variable to store the name of the user's establishment (if specified)
   const [establishmentName, setEstablishmentName] = useState('');
 
 
-  // This function is called when the component receives new props and it serves two purposes
-  // 1) Separates ingredients/tools into respective arrays and updates state variables
-  // 2) Initializes an object that holds all ingredients/tools and a boolean property to indicate whether that item's checkbox is checked
+  // Called when component is rendered => seperates ingredients/tools into respective arrays and initializes itemList object that holds all ingredients/tools along with a boolean property to indicate whether the item's corresponding checkbox is checked
   useLayoutEffect(() => {
     let base = [];
     let supplementary = [];
     let additional = [];
     let tools = [];
     let tempItemList = {};
-    
     for (let i = 0; i < props.ingredientCollection.length; i++) {
       tempItemList[props.ingredientCollection[i]['Name']] = false;
-
-      // Switch statements are sorted from most common to least common category to minimize the number of cases checked
       switch (props.ingredientCollection[i]['Type']) {
         case 'Additional Ingredient':
           additional.push(props.ingredientCollection[i]['Name']);
@@ -83,7 +85,7 @@ const ItemSelector = (props) => {
   }, [props.ingredientCollection])
 
 
-  // Function called whenever a checkbox is checked/unchecked and it updates that item's boolean property in the itemList state variable
+  // Called whenever a checkbox is checked/unchecked and it updates that item's boolean property in the itemList state variable
   const handleCheckboxChange = (event) => {
     let temp = itemList;
     const item = event.target.value;
@@ -92,8 +94,7 @@ const ItemSelector = (props) => {
   }
 
 
-  // This function is called when the user clicks 'See Cocktails'
-  // It checks which items the user has selected and generates data to be passed to child components
+  // Called when user clicks 'See Cocktails' => checks with items the user has selected and generates data to be passed to child components
   const generateDrinkOptions = () => {  
     // Iterate through itemList to determine which items are available and add those items to availableItems object
     let availableItems = {};
@@ -124,7 +125,7 @@ const ItemSelector = (props) => {
     // 5) recommendedItems is an object that will contain the top recommended items to enhance the user's drink menu
     let tempRecommendedItems = {};
     
-    // Iterate through all cocktails in the database and check to see if the user has all available items
+    // Iterate through all cocktails in the database and add drinks and items into relevant categories
     for (let property in props.drinkObject) {
       let canMakeDrink = true;
       // When the user is missing an item, add it to the missingItems array
@@ -248,7 +249,7 @@ const ItemSelector = (props) => {
   }
 
 
-  // Function called when 'Reset' is clicked. It updates the itemList so all items are set to false, unchecks all checkboxes, and deactivates all subcomponents
+  // Called when user clicks 'Reset' => updates the itemList so all items are set to false, unchecks all checkboxes, and deactivates all subcomponents
   const resetDrinkOptions = () => {
     let tempItemList = {};
 
@@ -272,7 +273,7 @@ const ItemSelector = (props) => {
   }
 
 
-  // Show DisplayDrinks component
+  // Displays the DisplayDrinks component
   const viewDisplayDrinks = () => {
     setShowDisplayDrinks(true);
     setShowRecommendedItems(false);
@@ -280,7 +281,7 @@ const ItemSelector = (props) => {
   }
 
 
-  // Show RecommendedItems component
+  // Displays the RecommendedItems component
   const viewRecommendedItems = () => {
     setShowDisplayDrinks(false);
     setShowRecommendedItems(true);
@@ -288,7 +289,7 @@ const ItemSelector = (props) => {
   }
 
 
-  // Show NearlyAttainableDrinks component
+  // Displays the NearlyAttainableDrinks component
   const viewNearlyAttainableDrinks = () => {
     setShowDisplayDrinks(false);
     setShowRecommendedItems(false);
@@ -303,7 +304,7 @@ const ItemSelector = (props) => {
   }
 
 
-  // Open new window with GenerateInstructions component, passing the establishment name and user's drink list as props
+  // Called when user clicks 'Generate Instructions' => opens a new window with the GenerateInstructions component, passing the establishment name and user's drink list as props
   const generateInstructions = () => {
     const instructionsWindow = window.open();
     const instructionsRoot = createRoot(instructionsWindow.document);
@@ -311,7 +312,7 @@ const ItemSelector = (props) => {
   }
 
 
-  // Open new window with GenerateMenu component, passing the establishment name and user's drink list as props
+  // Called when user clicks 'Generate Menu' => opens a new window with the GenerateMenu component, passing the establishment name and user's drink list as props
   const generateMenu = () => {
     const menuWindow = window.open();
     const menuRoot = createRoot(menuWindow.document);
@@ -328,7 +329,7 @@ const ItemSelector = (props) => {
                 <legend>Please select the base spirits you have available:</legend>
               </div>
               <div className='checkboxContainer'>
-                {/* Conditionally render checkboxes based on the stateful item arrays */}
+                {/* The following code conditionally renders checkboxes in 4 categories based on the stateful item arrays */}
                 {
                   baseSpirits.map(element => {
                     return (
@@ -345,7 +346,6 @@ const ItemSelector = (props) => {
                 <legend>Please select the liqueurs and supplementary alcoholic drinks you have available:</legend>
               </div>
               <div className='checkboxContainer'>
-                {/* Conditionally render checkboxes based on the stateful item arrays */}
                 {
                   supplementaryAlcohol.map(element => {
                     return (
@@ -362,7 +362,6 @@ const ItemSelector = (props) => {
                 <legend>Please select the supplementary ingredients you have available:</legend>
               </div>
               <div className='checkboxContainer'>
-                {/* Conditionally render checkboxes based on the stateful item arrays */}
                 {
                   additionalIngredients.map(element => {
                     return (
@@ -378,7 +377,6 @@ const ItemSelector = (props) => {
           <div className='toolsAndSubmitGroup'>
             <div className='toolsGroup'>
               <legend className='toolsLegend'>Please select the tools you have available:</legend>
-              {/* Conditionally render checkboxes based on the stateful item arrays */}
               <div className='toolsCheckboxes'>
                 {
                   tools.map(element => {

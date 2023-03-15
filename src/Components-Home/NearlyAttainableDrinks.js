@@ -3,9 +3,12 @@ import React from 'react';
 import {useEffect, useState} from 'react';
 import {createRoot} from 'react-dom/client';
 
-// This component displays a list of nearly available drinks, which are drinks where the user is only missing 1-2 items
+// Subcomponent of ItemSelector
+// This component displays a list of nearly attainable drinks, which are drinks where the user is only missing 1-2 items
+// Users can select from the list of drinks to see specific details on each cocktail and the items they are missing
+
 const NearlyAttainableDrinks = (props) => {
-    // State variable to store a html root that we will use to render data
+    // Variable to store a html root that we will use to render data
     const [detailsRoot, setDetailsRoot] = useState();
 
 
@@ -17,7 +20,7 @@ const NearlyAttainableDrinks = (props) => {
     }, [])
 
 
-    // Create an HTML element containing the selected drink's details and include a list of all missing items
+    // Create an HTML element containing the selected drink's details and include a list of all missing items for that drink
     const displayDrinkDetails = (event) => {
         let drinkName = event.target.value;
         const drinkDetails = (
@@ -36,8 +39,6 @@ const NearlyAttainableDrinks = (props) => {
                 <p><strong>IBA Official Cocktail: </strong>{props.drinkObject[drinkName]['IBA Official Cocktail']}</p>
             </div>
         );
-
-        // Display the details of the selected drink to the detailsRoot
         detailsRoot.render(drinkDetails);
     }
 
@@ -59,7 +60,7 @@ const NearlyAttainableDrinks = (props) => {
                     }
                     <h4 className='drinkListIntro'>{(props.drinksOneAway.length < 10 && props.drinksTwoAway.length > 0) ? 'You are 2 items away from making the following cocktails: ' : <></>}</h4>
                     <h4 className='drinkListIntro'>{(props.drinksOneAway.length === 0 && props.drinksTwoAway.length === 0) ? 'You are not within 2 items of making any additional drinks.' : <></>}</h4>
-                    {/* If the user has fewer than 10 drinks in the category above, also iterate through all drinks where the user is missing only 2 items and render a button for each drink */}
+                    {/* If the user has fewer than 10 drinks in drinksOneAway, also iterate through all drinks where the user is missing only 2 items and render a button for each drink */}
                     {
                         props.drinksOneAway.length < 10 ? (
                             props.drinksTwoAway.map(drink => {

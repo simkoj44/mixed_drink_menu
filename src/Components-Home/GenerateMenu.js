@@ -1,9 +1,11 @@
 import {useState, useEffect} from 'react';
 import React from 'react';
 
+// Subcomponent of ItemSelector
 // This component renders a printable menu of all the user's available cocktails
+
 const GenerateMenu = (props) => {
-    // State variables to store available cocktails by category
+    // Variables to store available cocktails by category
     const [brandyDrinks, setBrandyDrinks] = useState([]);
     const [ginDrinks, setGinDrinks] = useState([]);
     const [rumDrinks, setRumDrinks] = useState([]);
@@ -16,7 +18,6 @@ const GenerateMenu = (props) => {
 
     // When component is rendered, sort drinks by category and update state variables
     useEffect(() => {
-        // Temporary variables to break out drinks by category (used to update state variables)
         let brandyDrinkList = [];
         let ginDrinkList = [];
         let rumDrinkList = [];
@@ -69,6 +70,7 @@ const GenerateMenu = (props) => {
     }, [props.userDrinkList, props.drinkObject])
     
     
+    // Render drink menu broken out by category. If a category does not have any available drinks, it is skipped.
     // Inline styles are used because page opens in a new window without access to CSS files from the rest of the application
     return (
         <html>
@@ -77,7 +79,6 @@ const GenerateMenu = (props) => {
                 <div style={{ textAlign: 'center', width: '90%', margin: 'auto', border: '1px solid black' }}>
                     <h1 style={{ paddingTop: '30px', marginBottom: '30px', fontFamily: 'sans-serif' }}>{props.name} Cocktail Menu</h1>
                     <hr></hr>
-                    {/* Following code will render drink menu broken out by category. If a category does not have any available drinks, it is skipped. */}
                     {
                         brandyDrinks.length <= 0 ? <></> : (
                             <div>

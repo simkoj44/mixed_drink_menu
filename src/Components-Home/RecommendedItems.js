@@ -3,12 +3,14 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import {createRoot} from 'react-dom/client';
 
-// This component displays a list of recommended items for the user. Recommended items are missing items for all nearly available drinks (drinks where the user is missing only 1-2 items)
+// Subcomponent of ItemSelector
+// This component displays a list of recommended items for the user. Recommended items are missing items for nearly available drinks (drinks where the user is missing only 1-2 items)
 // Users can select from the list of recommended items to see which drinks it will help them make
+
 const RecommendedItems = (props) => {
-    // State variable to store sorted list of recommended items (based on frequency in nearly available drinks)
+    // Variable to store sorted list of recommended items (based on frequency in nearly available drinks)
     const [sortedRecommendedItems, setSortedRecommendedItems] = useState([]);
-    // State variable to store a html root that we will use to render data
+    // Variable to store a html root that we will use to render data
     const [detailsRoot, setDetailsRoot] = useState();
 
     
@@ -40,10 +42,6 @@ const RecommendedItems = (props) => {
     const displayItemDetails = (event) => {
         let itemName = event.target.value;
 
-        // Boolean variables to identify whether a particular item is the only item missing for any drinks or one of two items missing for any drinks
-        let displayOneAway = (props.recommendedItems[itemName]['Drinks One Away'].length > 0);
-        let displayTwoAway = (props.recommendedItems[itemName]['Drinks Two Away'].length > 0);
-
         // Formatting update for certain items to improve grammar of output
         let formattedName = itemName;
         if (itemName === 'Strainer' || itemName === 'Blender' || itemName === 'Cocktail Shaker' || itemName === 'Lemon' || itemName === 'Lime' || itemName === 'Sugar Cube') {
@@ -58,9 +56,9 @@ const RecommendedItems = (props) => {
             <div>
                 <h3 className='itemName'>{itemName}</h3>
                 <div className='itemContainer'>
-                    {/* Check display variable and render all drinks for which the selected item is the only missing item */}
+                    {/* Check to see if we have drinks to display and render all drinks for which the selected item is the only missing item */}
                     {
-                        displayOneAway ? (
+                        (props.recommendedItems[itemName]['Drinks One Away'].length > 0) ? (
                             <div>
                                 <hr></hr>
                                 <p><strong>Acquiring {formattedName} will enable you to make the following cocktails:</strong></p>
@@ -80,10 +78,10 @@ const RecommendedItems = (props) => {
                             </div>
                         ) : <></>
                     }
-                    {/* Check display variable and render all drinks for which the selected item is one of two missing items
+                    {/* Check to see if we have drinks to display and render all drinks for which the selected item is one of two missing items
                         Call function findOtherMissing to identify the other missing item (and display for the user) */}
                     {
-                        displayTwoAway ? (
+                        (props.recommendedItems[itemName]['Drinks Two Away'].length > 0) ? (
                             <div>
                                 <hr></hr>
                                 <p><strong>Acquiring {formattedName} and one other item will enable you to make the following cocktails:</strong></p>
@@ -108,14 +106,12 @@ const RecommendedItems = (props) => {
                 </div>
             </div>
         )
-
-        // Display the details of the selected drink to the detailsRoot
         detailsRoot.render(itemDetails);
     }
 
 
     // This function is called when the user selects an item which is one of two missing items for a particular drink
-    // It identify and returns the other missing item in an italicized HTML element
+    // It identifies and returns the other missing item in an HTML element
     const findOtherMissing = (drink, mainItem) => {
         // Check all required items for the given drink and find which one is also in recommendedItems
         let missingItem = '';
@@ -145,7 +141,6 @@ const RecommendedItems = (props) => {
             formattedName = 'an ' + missingItem;
         }
         
-        // Return HTML element with formattedName
         return (
             <><i>You are also missing {formattedName}</i></>
         )

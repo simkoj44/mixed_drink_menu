@@ -2,10 +2,12 @@ import '../Styles-Home/DisplayDrinks.css';
 import React, {useEffect, useState} from 'react';
 import {createRoot} from 'react-dom/client';
 
+// Subcomponent of ItemSelector
 // This component displays the full list of drinks that the user can make, based on the items they have available
-// Users can select from their list of drinks to see specific details on each cocktail
+// Users can select from the list of drinks to see specific details on each cocktail
+
 const DisplayDrinks = (props) => {
-  // State variable to store a html root that we will use to render data
+  // Variable to store a html root that we will use to render data
   const [detailsRoot, setDetailsRoot] = useState();
   
 
@@ -35,8 +37,6 @@ const DisplayDrinks = (props) => {
         <p><strong>IBA Official Cocktail: </strong>{props.drinkObject[drinkName]['IBA Official Cocktail']}</p>
       </div>
     );
-    
-    // Display the details of the selected drink to the detailsRoot
     detailsRoot.render(drinkDetails);
   }
 
