@@ -78,10 +78,10 @@ const GenerateMenu = (props) => {
             <body>
                 <div style={{ textAlign: 'center', width: '90%', margin: 'auto', border: '1px solid black' }}>
                     <h1 style={{ paddingTop: '30px', marginBottom: '30px', fontFamily: 'sans-serif' }}>{props.name} Cocktail Menu</h1>
-                    <hr></hr>
                     {
                         brandyDrinks.length <= 0 ? <></> : (
                             <div>
+                                <hr></hr>
                                 <h2 style={{fontFamily: 'sans-serif'}}>Brandy Cocktails</h2>
                                 {
                                     brandyDrinks.map((drink) => {

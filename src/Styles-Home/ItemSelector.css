@@ -1,5 +1,9 @@
 /* ItemSelector */
 
+.description {
+    text-align: center
+}
+
 .checkboxGroup {
     justify-content: space-between;
     display: flex;

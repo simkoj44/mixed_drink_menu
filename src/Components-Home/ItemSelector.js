@@ -153,12 +153,12 @@ const ItemSelector = (props) => {
           tempOneAway.push(property)
           tempMissingItemsByDrink[property] = missingItems;
           if (tempRecommendedItems[missingItems[0]]) {
-            tempRecommendedItems[missingItems[0]]['Count'] += 1.01
+            tempRecommendedItems[missingItems[0]]['Count'] += 1
             tempRecommendedItems[missingItems[0]]['Drinks One Away'].push(property);
           }
           else {
             tempRecommendedItems[missingItems[0]] = {
-                'Count': 1.01,
+                'Count': 1,
                 'Drinks One Away': [property],
                 'Drinks Two Away': []
             };
@@ -170,12 +170,12 @@ const ItemSelector = (props) => {
           tempMissingItemsByDrink[property] = missingItems;
           for (let i = 0; i < missingItems.length; i++) {
             if (tempRecommendedItems[missingItems[i]]) {
-                tempRecommendedItems[missingItems[i]]['Count'] += 1
+                tempRecommendedItems[missingItems[i]]['Count'] += 0.51
                 tempRecommendedItems[missingItems[i]]['Drinks Two Away'].push(property);
             }
             else {
                 tempRecommendedItems[missingItems[i]] = {
-                    'Count': 1,
+                    'Count': 0.51,
                     'Drinks One Away': [],
                     'Drinks Two Away': [property]
                 };
@@ -211,11 +211,10 @@ const ItemSelector = (props) => {
       tempRecommendedItems['Gold Rum']['Drinks One Away'].push(...tempRecommendedItems['Rum']['Drinks One Away']);
       tempRecommendedItems['Gold Rum']['Drinks Two Away'].push(...tempRecommendedItems['Rum']['Drinks Two Away']);
 
-      tempRecommendedItems['Spiced Rum'] = {
-          'Count': tempRecommendedItems['Rum']['Count'],
-          'Drinks One Away': tempRecommendedItems['Rum']['Drinks One Away'],
-          'Drinks Two Away': tempRecommendedItems['Rum']['Drinks Two Away']
-      }
+      tempRecommendedItems['Spiced Rum']['Count'] += (tempRecommendedItems['Rum']['Count']);
+      tempRecommendedItems['Spiced Rum']['Drinks One Away'].push(...tempRecommendedItems['Rum']['Drinks One Away']);
+      tempRecommendedItems['Spiced Rum']['Drinks Two Away'].push(...tempRecommendedItems['Rum']['Drinks Two Away']);
+
       tempRecommendedItems['Rum']['Count'] = 0;
     }
     if (tempRecommendedItems['Milk/Cream']) {
@@ -309,6 +308,10 @@ const ItemSelector = (props) => {
     const instructionsWindow = window.open();
     const instructionsRoot = createRoot(instructionsWindow.document);
     instructionsRoot.render(<GenerateInstructions name={establishmentName} userDrinkList={userDrinkList} drinkObject={props.drinkObject}/>);
+    // Timeout function allows enough time for render to complete before opening print dialog
+    setTimeout(function() {
+      instructionsWindow.print();
+    }, 5);
   }
 
 
@@ -317,12 +320,16 @@ const ItemSelector = (props) => {
     const menuWindow = window.open();
     const menuRoot = createRoot(menuWindow.document);
     menuRoot.render(<GenerateMenu name={establishmentName} userDrinkList={userDrinkList} drinkObject={props.drinkObject}/>);
+    // Timeout function allows enough time for render to complete before opening print dialog
+    setTimeout(function() {
+      menuWindow.print();
+    }, 5);
   }
 
 
   return (
         <div>
-          <p><strong>Select your available items to view a list of cocktails you are able to make, along with recommended items and nearly attainable drinks.</strong></p>
+          <p className='description'><strong>Select your available items to view a list of cocktails you are able to make, along with recommended items and nearly attainable drinks.</strong></p>
           <div className='checkboxGroup'>
             <div className='checkboxColumn'>
               <div className='checkboxLegend'>
