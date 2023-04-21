@@ -308,10 +308,6 @@ const ItemSelector = (props) => {
     const instructionsWindow = window.open();
     const instructionsRoot = createRoot(instructionsWindow.document);
     instructionsRoot.render(<GenerateInstructions name={establishmentName} userDrinkList={userDrinkList} drinkObject={props.drinkObject}/>);
-    // Timeout function allows enough time for render to complete before opening print dialog
-    setTimeout(function() {
-      instructionsWindow.print();
-    }, 5);
   }
 
 
@@ -320,10 +316,6 @@ const ItemSelector = (props) => {
     const menuWindow = window.open();
     const menuRoot = createRoot(menuWindow.document);
     menuRoot.render(<GenerateMenu name={establishmentName} userDrinkList={userDrinkList} drinkObject={props.drinkObject}/>);
-    // Timeout function allows enough time for render to complete before opening print dialog
-    setTimeout(function() {
-      menuWindow.print();
-    }, 5);
   }
 
 
