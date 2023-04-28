@@ -5,22 +5,19 @@
 }
 
 .checkboxGroup {
-    justify-content: space-between;
-    display: flex;
     font-size: 17px;
 }
   
 .checkboxColumn {
     border: 1px solid black;
     text-align: left;
-    flex-basis: calc(33% - 5px);
+    margin-bottom: 20px;
 }
   
 .checkboxLegend {
     border-bottom: 1px solid black;
     font-weight: bold;
     text-align: center;
-    height: 52px;
     overflow: hidden;
 }
   
@@ -34,8 +31,6 @@
     font-size: 16px;
     margin-top: 15px;
     text-align: center;
-    margin-left: 33.6%;
-    width: 32.8%;
     margin-bottom: 15px;
 }
 
@@ -53,6 +48,10 @@
 .toolsCheckboxes {
     padding-top: 3px;
     padding-bottom: 3px;
+}
+
+.toolAndLabel {
+    white-space: nowrap;
 }
 
 .space {
@@ -105,4 +104,31 @@
     margin-top: 5px;
     margin-bottom: 5px;
     letter-spacing: 0.25px;
+}
+
+@media screen and (min-width: 810px) {
+    .checkboxGroup {
+        display: flex;
+        justify-content: space-between;
+    }
+    .checkboxColumn {
+        flex-basis: calc(33% - 5px);
+        margin-bottom: 0px;
+    }
+    .toolsAndSubmitGroup {
+        margin-left: 33.6%;
+        width: 32.8%;
+    }
+}
+
+@media screen and (min-width: 810px) {
+    .checkboxLegend {
+        height: 78px;
+    }
+}
+
+@media screen and (min-width: 1240px) {
+    .checkboxLegend {
+        height: 52px;
+    }
 }

@@ -70,8 +70,6 @@ const BrowseCocktails = (props) => {
       <div className='browseCocktails'>
         <h3 className='browseCocktailsHeader'>We have {fullDrinkList.length} cocktails in our database: </h3>
         <div className='sortingButtonGroup'>
-          <button type='button' className='primaryButton' onClick={sortAtoZ}>Sort A-Z</button>
-          <div className='space'></div>
           <div className='baseSpiritSelector'>
             <label htmlFor='base spirit'>Sort by Base Spirit:</label>
             <div className='space'></div>
@@ -89,6 +87,8 @@ const BrowseCocktails = (props) => {
           </div>
           <div className='space'></div>
           <button type='button' className='primaryButton' onClick={sortByAlcohol}>Sort by Alcohol Content</button>
+          <div className='space'></div>
+          <button type='button' className='primaryButton' onClick={sortAtoZ}>Sort A-Z</button>
         </div>
         <div>
           {

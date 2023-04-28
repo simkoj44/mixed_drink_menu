@@ -12,11 +12,11 @@
 .sortingButtonGroup {
     margin-bottom: 15px;
 }
-  
+
 .primaryButton {
+    font-size: 14px;
     color: #f2f2f2;
     background-color: #333;
-    font-size: 16px;
     border: 1px solid #333;
     letter-spacing: 0.25px;
     padding: 5px;
@@ -38,7 +38,7 @@
 .baseSpiritSelector {
     display: inline-block;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     color: #f2f2f2;
     text-align: center;
     background-color: #333;
@@ -46,22 +46,38 @@
     margin-top: 5px;
     padding-left: 5px;
     padding-right: 5px;
-    line-height: 28.67px;
     letter-spacing: 0.25px;
+    line-height: 27px;
 }
-  
+
 .browseContainer {
     border: 2px solid black;
     padding: 10px;
-    width: 65%;
     margin: auto;
     margin-bottom: 20px;
 }
-  
+
 .drinkDetails {
     text-align: left;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 5%;
+    margin-right: 5%;
     font-size: 12px;
     line-height: 130%;
 }
+
+@media screen and (min-width: 576px) {
+    .primaryButton {
+        font-size: 16px;
+    }
+    .baseSpiritSelector {
+        font-size: 16px;
+        line-height: 28.665px;
+    }
+    .browseContainer {
+        width: 80%;
+    }
+    .drinkDetails {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+  }

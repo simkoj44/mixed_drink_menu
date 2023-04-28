@@ -68,7 +68,6 @@ const App = () => {
       <div className='fullApplication'>
         <div>
           <h1 className='title'>Mixed Drink Menu</h1>
-          <p className='subtitle'>A Desktop Application</p>
           <div className='navBar'>
             <button type='button' className='navBarButton' onClick={() => navigate('/')}>Home</button>
             <div className='space'></div>
