@@ -182,12 +182,15 @@ const ItemSelector = (props) => {
             }
           }
         }
-        // If the user is missing 3 or more items and we have not encountered this item before, add an empty instance to recommendedItems (used to search for missing items in child component)
+        // If the user is missing 3 or more items, increment count in recommendedItems object (also important to add an empty instance to recommendedItems which used to search for missing items in child component)
         else {
           for (let i = 0; i < missingItems.length; i++) {
-            if (!tempRecommendedItems[missingItems[i]]) {
+            if (tempRecommendedItems[missingItems[i]]) {
+                tempRecommendedItems[missingItems[i]]['Count'] += 0.20;
+            }
+            else {
                 tempRecommendedItems[missingItems[i]] = {
-                    'Count': 0,
+                    'Count': 0.20,
                     'Drinks One Away': [],
                     'Drinks Two Away': []
                 };
