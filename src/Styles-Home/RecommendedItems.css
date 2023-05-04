@@ -1,42 +1,9 @@
 /* RecommendedItems */
-.recommendationsGroup {
-    display: flex;
-    margin-top: 12px;
-}
-
-.itemsColumn {
-    height: 500px;  
-    flex-basis: calc(50%);
-    overflow-y: auto;
-    border:1px solid black;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.recommendationsContainer {
-    width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
-}
-  
-.drinkColumn {
-    height: 500px;
-    flex-basis: calc(50%);
-    border:1px solid black;
-    text-align: center;
-    margin-bottom: 10px;
-    overflow-y: auto;
-}
-
 .drinkListIntro {
     margin-bottom: 0;
     padding: 0;
 }
 
-.itemButtonContainer {
-    padding: 2px;
-}
-  
 .itemButton {
     width: 75%;
     margin: auto;
@@ -45,10 +12,54 @@
     transition-delay: 0.4s;
 }
 
+.itemButtonContainer {
+    padding: 2px;
+}
+
 .itemName {
     text-align: center;
+}
+  
+.itemsColumn {
+    height: 250px;
+    overflow-y: auto;
+    border:1px solid black;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 .itemContainer {
     text-align: left;
+}
+
+.recommendationsContainer {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.recommendationsGroup {
+    margin-top: 12px;
+}
+
+.relatedDrinkColumn {
+    border:1px solid black;
+    text-align: center;
+    margin-bottom: 10px;
+    overflow-y: auto;
+}
+
+@media screen and (min-width: 836px) {
+    .recommendationsGroup {
+        display: flex;
+    }
+    .itemsColumn {
+        height: 500px;
+        flex-basis: calc(50%);
+    }
+    .relatedDrinkColumn {
+        height: 500px;
+        flex-basis: calc(50%);
+        margin-left: 8px;
+    }
 }

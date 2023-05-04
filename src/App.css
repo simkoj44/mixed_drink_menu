@@ -1,52 +1,4 @@
 /* App */
-.fullApplication {
-  font-family: Arial, Helvetica, sans-serif;
-  border: 1px solid black;
-}
-
-.title {
-  text-align: center;
-  margin-bottom: 0;
-  margin-top: 0;
-  background-color: #F1F1F1;
-  padding-top: 20px;
-  border: none;
-  padding-bottom: 20px;
-}
-
-.navBar {
-  background-color: #333;
-  height: 30px;
-  border: 1px solid black
-}
-
-.navBarButton {
-  color: #f2f2f2;
-  background-color: #333;
-  border: none;
-  height: 100%;
-  width: 35%;
-  font-size: 14px;
-}
-
-@media screen and (min-width: 576px) {
-  .navBarButton {
-    width: 200px;
-    font-size: 16px;
-  }
-}
-
-.navBarButton:hover {
-  background-color: #F1F1F1;
-  color: black;
-}
-
-.space {
-  width: 8px;
-  height: auto;
-  display: inline-block;
-}
-
 .body {
   font-size: 1.15rem;
   line-height: 1.5;
@@ -59,11 +11,9 @@
   grid-column: 2;
 }
 
-.loadingLabel {
-  text-align: center;
-  margin-top: 180px;
-  font-weight: bold;
-  font-size: 25px;
+.fullApplication {
+  font-family: Arial, Helvetica, sans-serif;
+  border: 1px solid black;
 }
 
 .loader {
@@ -78,7 +28,64 @@
   animation: spinner 4s linear infinite;
 }
 
+.loadingLabel {
+  text-align: center;
+  margin-top: 180px;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.navBar {
+  background-color: #333;
+  height: 30px;
+  border: 1px solid black
+}
+
+.navBarButton {
+  color: #f2f2f2;
+  background-color: #333;
+  border: none;
+  height: 100%;
+  width: 120px;
+  font-size: 12px;
+}
+
+.navBarButton:hover {
+  background-color: #F1F1F1;
+  color: black;
+}
+
+.space {
+  width: 8px;
+  height: auto;
+  display: inline-block;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: 0;
+  background-color: #F1F1F1;
+  padding-top: 20px;
+  border: none;
+  padding-bottom: 20px;
+}
+
 @keyframes spinner {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@media screen and (min-width: 369px) {
+  .navBarButton {
+    width: 35%;
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .navBarButton {
+    width: 200px;
+    font-size: 16px;
+  }
 }

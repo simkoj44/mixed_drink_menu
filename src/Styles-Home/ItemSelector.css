@@ -1,63 +1,71 @@
 /* ItemSelector */
-
-.description {
-    text-align: center
+.buttonContainer {
+    margin-bottom: 15px;
+    text-align: center;
 }
 
-.checkboxGroup {
-    font-size: 17px;
+.buttonSpaceA {
+    display: inline-block;
 }
-  
+
+.buttonSpaceB {
+    display: inline-block;
+}
+
+.buttonSpaceC {
+    display: inline-block;
+}
+
 .checkboxColumn {
     border: 1px solid black;
     text-align: left;
     margin-bottom: 20px;
 }
-  
+
+.checkboxContainer {
+    height: 330px;
+    overflow-y: scroll;
+    margin-left: 20%;
+}
+
+.checkboxGroup {
+    font-size: 17px;
+    width: 95%;
+    margin: auto;
+}
+
 .checkboxLegend {
     border-bottom: 1px solid black;
     font-weight: bold;
     text-align: center;
     overflow: hidden;
 }
-  
-.checkboxContainer {
-    height: 330px;
-    overflow-y: scroll;
-    margin-left: 20%;
-}
-  
-.toolsAndSubmitGroup {
-    font-size: 16px;
-    margin-top: 15px;
+
+.description {
     text-align: center;
-    margin-bottom: 15px;
+    font-size: 14px;
 }
 
-.toolsGroup {
-    border: 1px solid black;
+.displayButtonGroup {
+    text-align: center;
+    margin-bottom: 12px;
 }
 
-.toolsLegend {
+.establishmentNameLabel {
     font-weight: bold;
-    border-bottom: 1px solid black;
-    padding-bottom: 3px;
-    padding-top: 3px;
 }
-
-.toolsCheckboxes {
-    padding-top: 3px;
-    padding-bottom: 3px;
-}
-
-.toolAndLabel {
-    white-space: nowrap;
-}
-
-.space {
-    width: 8px;
-    height: auto;
+  
+.establishmentNameInput {
     display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 26.67px;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    letter-spacing: 0.25px;
 }
 
 .itemButtonGroup {
@@ -79,34 +87,69 @@
     border: 1px solid black;
 }
 
-.displayButtonGroup {
-    text-align: center;
-    margin-bottom: 12px;
-}
-
-.buttonContainer {
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-.establishmentNameLabel {
-    font-weight: bold;
-}
-  
-.establishmentNameInput {
+.space {
+    width: 8px;
+    height: auto;
     display: inline-block;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    line-height: 26.67px;
-    text-align: center;
-    border-style: solid;
-    border-width: 1px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    letter-spacing: 0.25px;
 }
 
-@media screen and (min-width: 810px) {
+.toolAndLabel {
+    white-space: nowrap;
+}
+
+.toolsAndSubmitGroup {
+    font-size: 16px;
+    margin-top: 15px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.toolsCheckboxes {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.toolsGroup {
+    border: 1px solid black;
+    width: 95%;
+    margin: auto;
+}
+
+.toolsLegend {
+    font-weight: bold;
+    border-bottom: 1px solid black;
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+
+@media screen and (min-width: 369px) {
+    .buttonSpaceA {
+        width: 8px;
+        height: auto;
+    }
+}
+
+@media screen and (min-width: 422px) {
+    .buttonSpaceC {
+        width: 8px;
+        height: auto;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .description {
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 663px) {
+    .buttonSpaceB {
+        width: 8px;
+        height: auto;
+    }
+}
+
+@media screen and (min-width: 836px) {
     .checkboxGroup {
         display: flex;
         justify-content: space-between;
@@ -115,19 +158,19 @@
         flex-basis: calc(33% - 5px);
         margin-bottom: 0px;
     }
+    .checkboxLegend {
+        height: 78px;
+    }
     .toolsAndSubmitGroup {
         margin-left: 33.6%;
         width: 32.8%;
     }
-}
-
-@media screen and (min-width: 810px) {
-    .checkboxLegend {
-        height: 78px;
+    .description {
+        font-size: 18px;
     }
 }
 
-@media screen and (min-width: 1240px) {
+@media screen and (min-width: 1287px) {
     .checkboxLegend {
         height: 52px;
     }

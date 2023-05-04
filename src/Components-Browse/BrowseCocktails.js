@@ -72,7 +72,7 @@ const BrowseCocktails = (props) => {
         <div className='sortingButtonGroup'>
           <div className='baseSpiritSelector'>
             <label htmlFor='base spirit'>Sort by Base Spirit:</label>
-            <div className='space'></div>
+            <div className='spaceA'></div>
             <select onChange={filterByCategory} name='base spirit' id='base spirit'>
               <option value='All'>All</option>
               <option value='Brandy'>Brandy</option>
@@ -85,10 +85,12 @@ const BrowseCocktails = (props) => {
               <option value='Combination'>Combination</option>
             </select>
           </div>
-          <div className='space'></div>
+          <div className='spaceB'></div>
+          <span className='buttonSubGroup'>
           <button type='button' className='primaryButton' onClick={sortByAlcohol}>Sort by Alcohol Content</button>
-          <div className='space'></div>
+          <div className='spaceA'></div>
           <button type='button' className='primaryButton' onClick={sortAtoZ}>Sort A-Z</button>
+          </span>
         </div>
         <div>
           {

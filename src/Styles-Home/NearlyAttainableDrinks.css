@@ -1,27 +1,11 @@
 /* NearlyAttainableDrinks */
-.drinkGroup {
-    display: flex;
-    margin-top: 12px;
-}
-  
-.drinkColumn {
-    height: 500px;  
-    flex-basis: calc(50%);
-    overflow-y: auto;
+.detailsColumn {
     border:1px solid black;
     text-align: center;
     margin-bottom: 10px;
-}
-  
-.drinkListIntro {
-    margin-bottom: 15px;
-    padding: 0;
+    overflow-y: auto;
 }
 
-.drinkButtonContainer {
-    padding: 2px;
-}
-  
 .drinkButton {
     width: 69%;
     margin: auto;
@@ -30,32 +14,53 @@
     transition-delay: 0.4s;
 }
 
-.space {
-    width: 8px;
-    height: auto;
-    display: inline-block;
+.drinkButtonContainer {
+    padding: 2px;
 }
 
-.detailsColumn {
-    height: 500px;
-    flex-basis: calc(50%);
+.drinkColumn {
+    height: 250px;
+    overflow-y: auto;
     border:1px solid black;
     text-align: center;
     margin-bottom: 10px;
-    overflow-y: auto;
 }
- 
+
 .drinkContainer {
     width: 80%;
     margin-left: 10%;
     margin-right: 10%;
     text-align: left;
 }
+
+.drinkGroup {
+    margin-top: 12px;
+}
   
+.drinkListIntro {
+    margin-bottom: 15px;
+    padding: 0;
+}
+
 .drinkName {
     text-align: center;
 }
 
 .missingItems {
     text-align: center;
+}
+
+@media screen and (min-width: 836px) {
+    .drinkGroup {
+        display: flex;
+    }
+    .drinkColumn {
+        height: 500px;  
+        flex-basis: calc(50%);
+    }
+    .detailsColumn {
+        margin-left: 8px;
+        height: 500px;
+        flex-basis: calc(50%);
+    }
 }

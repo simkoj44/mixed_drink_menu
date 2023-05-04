@@ -73,7 +73,6 @@ const NearlyAttainableDrinks = (props) => {
                         ) : <></>
                     }
                 </div>
-                <div className='space'></div>
                 {/* The following div element is the location where drinkDetails will be displayed upon selection */}
                 <div className='detailsColumn' id='detailsBox'>
                     <h4>Drink details will be displayed here upon selection.</h4>

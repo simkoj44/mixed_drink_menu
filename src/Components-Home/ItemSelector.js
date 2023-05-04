@@ -395,6 +395,7 @@ const ItemSelector = (props) => {
               <button type='button' className='primaryButton' onClick={resetDrinkOptions}>Reset</button>
             </div>
           </div>
+          <span id='scrollTarget'></span>
           {/* Render component toggle buttons if the displayButtons state variable set to true */}
           {
             displayButtons ? (
@@ -402,9 +403,9 @@ const ItemSelector = (props) => {
             <hr></hr>
             <div className='displayButtonGroup'>
               <button type='button' className='primaryButton' onClick={viewDisplayDrinks}>View Available Drinks</button>
-              <div className='space'></div>
+              <div className='buttonSpaceA'></div>
               <button type='button' className='primaryButton' onClick={viewRecommendedItems}>View Recommended Items</button>
-              <div className='space'></div>
+              <div className='buttonSpaceB'></div>
               <button type='button' className='primaryButton' onClick={viewNearlyAttainableDrinks}>View Nearly Attainable Drinks</button>
             </div>
             {/* When one of the component toggle buttons is selected, display the chosen child component and pass data as props */}
@@ -425,7 +426,7 @@ const ItemSelector = (props) => {
                   <input type='text' placeholder='Establishment Name' className='establishmentNameInput' id='establishment' onChange={updateEstablishment}></input>
                   <br></br>
                   <button type='button' className='primaryButton' onClick={generateMenu}>Generate Printable Menu</button>
-                  <div className='space'></div>
+                  <div className='buttonSpaceC'></div>
                   <button type='button' className='primaryButton' onClick={generateInstructions}>Generate Printable Instructions</button>
                 </div>
               ) : <></>
@@ -433,7 +434,6 @@ const ItemSelector = (props) => {
             </>
             ) : <></>
           }
-          <div id='scrollTarget'></div>
         </div>
   );
 }

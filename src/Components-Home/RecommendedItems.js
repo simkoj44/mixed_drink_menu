@@ -173,8 +173,7 @@ const RecommendedItems = (props) => {
                         }
                     </div>
                 </div>
-                <div className='space'></div>
-                <div className='drinkColumn'>
+                <div className='relatedDrinkColumn'>
                     {/* The following div element is the location where itemDetails will be displayed upon selection */}
                     <div className='recommendationsContainer' id='itemBox'>
                         <h4>Item details will be displayed here upon selection.</h4>
